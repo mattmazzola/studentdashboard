@@ -255,10 +255,24 @@ h1,h2,h3,h4,h5,h6 {
 
 .sa-timeline {
 	flex: 3;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+}
+.sa-timeline__inner {
+	width: 2000px;
+	position: absolute;
+	top: 0;
+	// right: -20%;
+	bottom: 0;
+	background: url('../images/checkerbg.png') repeat;
+	display: flex;
 }
 
 .sa-item {
 	background-color: $color-offwhite;
+	display: flex;
+  	flex-direction: column;
 }
 .sa-item--timeline {
 	flex: 2;
@@ -290,7 +304,9 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .sa-item__content {
-	padding: 30px;
+	overflow-y: scroll;
+	flex: 1;
+	position: relative;
 }
 
 .sa-tags__item {
@@ -309,7 +325,11 @@ h1,h2,h3,h4,h5,h6 {
 
 
 .sa-assignment {
-	
+	position: absolute;
+	padding: 30px;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 .sa-assignment__title {
 	font-weight: lighter;
@@ -420,4 +440,34 @@ h1,h2,h3,h4,h5,h6 {
 .sa-event__description {
 	padding: 0.25em 0;
 	flex: 1;
+}
+
+.axis--x-ticks path,
+.axis--x-ticks line {
+    fill: none;
+    stroke: $purple-dark;
+	stroke-width: 2px;
+    shape-rendering: crispEdges;
+}
+
+.axis--x-ticks text {
+    display: none;
+}
+
+.axis--x-offsets path,
+.axis--x-offsets line,
+.axis--x-dates path,
+.axis--x-dates line,
+.axis--x-days path,
+.axis--x-days line {
+    display: none;
+}
+
+.axis--x-offsets text,
+.axis--x-dates text,
+.axis--x-days text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+	font-weight: lighter;
+	stroke: $purple-dark;
 }
