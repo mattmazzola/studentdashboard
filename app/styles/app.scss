@@ -217,7 +217,30 @@ button {
 }
 .sa-item__header {
 	background-color: $purple-normal;
+	color: $color-offwhite-font;
+	display: flex;
+	justify-content: flex-end;
 }
+.sa-item-command {
+	color: $color-offwhite-font;
+	margin: 0;
+	padding: 0 15px;
+	background: 0;
+	border: 0;
+	font-size: 16px;
+	cursor: pointer;
+	
+	&:hover {
+		background-color: rgba(255,255,255,0.1);
+	}
+	
+	[class^="ms-Icon--"]:before, [class*=" ms-Icon--"]:before {
+		line-height: 40px;
+		text-align: left;
+		font-size: 18px;
+	}
+}
+
 .sa-item__content {
 	padding: 30px;
 }
