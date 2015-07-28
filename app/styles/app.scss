@@ -96,8 +96,10 @@ button {
 	padding-left: 20px;
 	padding-right: 20px;
 }
-.sa-nav-button--collapsed {
-	display: none;
+@media(max-width: 600px) {
+	.sa-nav-button--collapsed {
+		display: none;
+	}
 }
 
 .sa-nav-button--expand {
@@ -113,17 +115,40 @@ button {
 
 .sa-search {
 	min-width: 300px;
-	width: 20%;
+	width: 25%;
 	background-color: white;
 }
 .sa-search__header {
 	display: flex;
 	background-color: $purple-light;
 	color: $color-offwhite-font;
+	
+	[class^="ms-Icon--"]:before, [class*=" ms-Icon--"]:before {
+		line-height: 40px;
+	}
 }
 
 .sa-search-header__input {
-	flex: 1
+	flex: 1;
+	border: 0;
+	background: 0;
+	color: $color-offwhite-font;
+	line-height: 40px;
+	padding: 0 20px;
+	
+	
+	&:focus {
+		outline: transparent;
+	}
+}
+.sa-search-header__icon {
+	min-width: 40px;
+	text-align: center;
+	cursor: pointer;
+	
+	&:hover {
+		background-color: rgba(255,255,255,0.1);
+	}
 }
 
 .sa-search__commands {
@@ -188,5 +213,30 @@ button {
 
 
 .sa-item {
-	flex: 1;
+	
+}
+.sa-item__header {
+	background-color: $purple-normal;
+}
+.sa-item__content {
+	padding: 30px;
+}
+
+.sa-assignment {
+	
+}
+.sa-assignment__title {
+	font-weight: lighter;
+	margin: 0 0 0.25em 0;
+}
+.sa-assignment__metadatas {
+	margin: 0 0 0.5em 0;
+	font-size: 14px;
+	color: $dark-grey;
+}
+.sa-assignment__metadata {
+	margin-right: 10px;
+}
+.sa-assignment__description {
+	margin: 0 0 0.5em 0;
 }

@@ -21,7 +21,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--menu2"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							StudentDashboard
 						</div>
 					</button>
@@ -29,7 +29,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--plus2"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							Add
 						</div>
 					</button>
@@ -37,7 +37,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--dashboard2"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							Home
 						</div>
 					</button>
@@ -45,7 +45,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--menu2"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							Timeline
 						</div>
 					</button>
@@ -55,7 +55,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--circleFill"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							Profile
 						</div>
 					</button>
@@ -63,7 +63,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--dashboard2"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							Feedback
 						</div>
 					</button>
@@ -71,7 +71,7 @@
 						<div class="sa-nav-button__icon">
 							<i class="ms-Icon--gear"></i>
 						</div>
-						<div class="sa-nav-button__text">
+						<div class="sa-nav-button__text sa-nav-button--collapsed">
 							Settings
 						</div>
 					</button>
@@ -80,16 +80,14 @@
 			<div class="sa-layout__pages">
 				<div class="sa-search">
 					<div class="sa-search__header">
-						<div class="sa-search-header__input">
-							Input
-						</div>
-						<div class="sa-search-header__search">
+						<input class="sa-search-header__input" type="text" />
+						<div class="sa-search-header__icon sa-search-header__icon--search">
 							<i class="ms-Icon--search"></i>
 						</div>
-						<div class="sa-search-header__refresh">
+						<div class="sa-search-header__icon sa-search-header__icon--refresh">
 							<i class="ms-Icon--refresh"></i>
 						</div>
-						<div class="sa-search-header__check">
+						<div class="sa-search-header__icon sa-search-header__icon--check">
 							<i class="ms-Icon--placeholder"></i>
 						</div>
 					</div>
@@ -131,9 +129,48 @@
 						</div>
 					</div>
 				</div>
-				<div class="sa-item">
-					Item
-				</div>
+				<article class="sa-item">
+					<div class="sa-item__header">
+						Header
+					</div>
+					<div class="sa-item__content">
+						<div class="sa-assignment">
+							<h1 class="sa-assignment__title">Artificial Intelligence</h1>
+							<p class="sa-assignment__metadatas">
+								<span class="sa-assignment__metadata">+2 days</span>
+							</p>
+							<p class="sa-assignment__description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</p>
+							<section>
+								<h2>Activities (3)</h2>
+								<div class="sa-activity-headers">
+									<div class="sa-activity-headers__grade-received">
+										Grade
+									</div>
+									<div class="sa-activity-headers__grade-possible">
+										Pts
+									</div>
+									<div class="sa-activity-headers__grade-average">
+										Avg
+									</div>
+								</div>
+								<div class="sa-activity">
+									<h3 class="sa-activity__title">Read</h3>
+									<div class="sa-materials">
+										PowerPoint
+									</div>
+								</div>
+								<div class="sa-activity">
+									<h3 class="sa-activity__title">Complete</h3>
+									<div class="sa-materials">
+										Word
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</article>
 			</div>
 		</div>	
 	</body>
