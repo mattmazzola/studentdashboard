@@ -117,6 +117,10 @@ body > .ember-view,
 	&:hover:not(.sa-nav-button--expand) {
 		background-color: $purple-highlight;
 	}
+
+	&.active {
+		background-color: $purple-highlight;
+	}
 }
 .sa-nav-button__text {
 	flex: 1;
