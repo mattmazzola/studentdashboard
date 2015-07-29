@@ -1,1 +1,9 @@
 <h1>Index</h1>
+
+<ul>
+  {{#each model as |item|}}
+    <li>{{#link-to "index.item" item}}Item: {{item.name}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+
+{{outlet}}
