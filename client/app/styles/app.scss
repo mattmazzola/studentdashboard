@@ -122,6 +122,9 @@ body > .ember-view,
 		background-color: $purple-highlight;
 	}
 }
+.sa-nav-button--collapsed {
+	display: none;
+}
 .sa-nav-button__text {
 	flex: 1;
 	font-size: 16px;

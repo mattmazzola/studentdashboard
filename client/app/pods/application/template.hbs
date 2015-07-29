@@ -10,10 +10,10 @@
   <div class="sa-layout__nav">
     <div class="sa-nav__primary">
       <button type="button" class="sa-nav-button sa-nav-button--expand">
-        <div class="sa-nav-button__icon">
+        <div class="sa-nav-button__icon" {{action "toggleExpand"}}>
           <i class="ms-Icon--menu2"></i>
         </div>
-        <div class="sa-nav-button__text sa-nav-button--collapsed">
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           StudentDashboard
         </div>
       </button>
@@ -21,7 +21,7 @@
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--dashboard2"></i>
         </div>
-        <div class="sa-nav-button__text sa-nav-button--collapsed">
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Home
         </div>
       {{/link-to}}
@@ -29,7 +29,7 @@
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--menu2"></i>
         </div>
-        <div class="sa-nav-button__text sa-nav-button--collapsed">
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Timeline
         </div>
       {{/link-to}}
@@ -39,7 +39,7 @@
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--circleFill"></i>
         </div>
-        <div class="sa-nav-button__text sa-nav-button--collapsed">
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Profile
         </div>
       </button>
@@ -47,7 +47,7 @@
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--dashboard2"></i>
         </div>
-        <div class="sa-nav-button__text sa-nav-button--collapsed">
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Feedback
         </div>
       </button>
@@ -55,7 +55,7 @@
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--gear"></i>
         </div>
-        <div class="sa-nav-button__text sa-nav-button--collapsed">
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Settings
         </div>
       </button>
