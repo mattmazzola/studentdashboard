@@ -1,8 +1,75 @@
-<h2 id="title">Welcome to Ember (Using Pods)</h2>
-
-<ul>
-  <li>{{#link-to "index"}}Home{{/link-to}}</li>
-  <li>{{#link-to "timeline"}}Timeline{{/link-to}}</li>
-</ul>
-
-{{outlet}}
+<div class="sa-layout__title">
+	<button class="sa-back-button">
+		<i class="ms-Icon--arrowLeft"></i>
+	</button>
+	<div class="sa-title__text">
+		StudentDashboard
+	</div>
+</div>
+<div class="sa-layout__content">
+  <div class="sa-layout__nav">
+    <div class="sa-nav__primary">
+      <button type="button" class="sa-nav-button sa-nav-button--expand">
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--menu2"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          StudentDashboard
+        </div>
+      </button>
+      <button class="sa-nav-button">
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--plus2"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          Add
+        </div>
+      </button>
+      {{#link-to "index" tagName="button" class="sa-nav-button"}}
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--dashboard2"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          Home
+        </div>
+      {{/link-to}}
+      {{#link-to "index" tagName="button" class="sa-nav-button"}}
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--menu2"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          Timeline
+        </div>
+      {{/link-to}}
+    </div>
+    <div class="sa-nav__secondary">
+      <button class="sa-nav-button">
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--circleFill"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          Profile
+        </div>
+      </button>
+      <button class="sa-nav-button">
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--dashboard2"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          Feedback
+        </div>
+      </button>
+      <button class="sa-nav-button">
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--gear"></i>
+        </div>
+        <div class="sa-nav-button__text sa-nav-button--collapsed">
+          Settings
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="sa-layout__pages">
+    {{outlet}}
+  </div>
+</div>
