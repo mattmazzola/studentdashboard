@@ -220,7 +220,7 @@ body > .ember-view,
 .sa-search__categories {
 	flex: 1;
 	position: relative;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .sa-search-categories {
@@ -239,6 +239,9 @@ body > .ember-view,
 	&:hover {
 		background-color: $purple-highlight;
 	}
+}
+.sa-search-category__items--collapsed {
+	display: none;
 }
 .sa-search-category__title {
 	margin: 0;
@@ -338,7 +341,7 @@ body > .ember-view,
 }
 
 .sa-item__content {
-	overflow-y: scroll;
+	overflow-y: auto;
 	flex: 1;
 	position: relative;
 }
