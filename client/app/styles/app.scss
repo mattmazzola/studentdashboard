@@ -143,6 +143,15 @@ body > .ember-view,
 	color: $color-offwhite-font;
 	font-weight: bold;
 	text-transform: uppercase;
+
+	/* TODO: Find way to remove: hack for ember */
+	.sa-nav-button__icon {
+		height: 19px;
+    margin-top: -1px;
+	}
+	.sa-nav-button__text {
+		font-size: 16px;
+	}
 }
 .sa-nav-button--expand:not(.sa-nav-button__text) {
   padding-top: 11px;
@@ -153,6 +162,8 @@ body > .ember-view,
 	min-width: 300px;
 	width: 25%;
 	background-color: white;
+	display: flex;
+	flex-direction: column;
 }
 .sa-search__header {
 	display: flex;
@@ -206,6 +217,19 @@ body > .ember-view,
 	border-bottom: 1px solid $grey-light;
 	padding: 15px 20px;
 }
+.sa-search__categories {
+	flex: 1;
+	position: relative;
+	overflow-y: scroll;
+}
+
+.sa-search-categories {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
 
 .sa-search-category {
 	color: $grey-73;
@@ -281,7 +305,8 @@ body > .ember-view,
 .sa-item {
 	background-color: $color-offwhite;
 	display: flex;
-  	flex-direction: column;
+  flex-direction: column;
+	flex: 1
 }
 .sa-item--timeline {
 	flex: 2;
