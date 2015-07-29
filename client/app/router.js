@@ -12,6 +12,9 @@ Router.map(function() {
   this.route('timeline', function() {
     this.route('event', { path: '/:event_id' });
   });
+  this.route('profile');
+  this.route('feedback');
+  this.route('settings');
 });
 
 export default Router;

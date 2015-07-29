@@ -1,7 +1,7 @@
 <div class="sa-layout__title">
-	<button class="sa-back-button">
+	{{#link-to "index" tagName="button" class="sa-back-button"}}
 		<i class="ms-Icon--arrowLeft"></i>
-	</button>
+	{{/link-to}}
 	<div class="sa-title__text">
 		StudentDashboard
 	</div>
@@ -35,30 +35,30 @@
       {{/link-to}}
     </div>
     <div class="sa-nav__secondary">
-      <button class="sa-nav-button">
+      {{#link-to "profile" tagName="button" class="sa-nav-button"}}
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--circleFill"></i>
         </div>
         <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Profile
         </div>
-      </button>
-      <button class="sa-nav-button">
+      {{/link-to}}
+      {{#link-to "feedback" tagName="button" class="sa-nav-button"}}
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--dashboard2"></i>
         </div>
         <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Feedback
         </div>
-      </button>
-      <button class="sa-nav-button">
+      {{/link-to}}
+      {{#link-to "settings" tagName="button" class="sa-nav-button"}}
         <div class="sa-nav-button__icon">
           <i class="ms-Icon--gear"></i>
         </div>
         <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
           Settings
         </div>
-      </button>
+      {{/link-to}}
     </div>
   </div>
   <div class="sa-layout__pages">
