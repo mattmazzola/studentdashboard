@@ -5,7 +5,6 @@ export default Ember.Component.extend({
 
   actions: {
     toggleExpand() {
-      console.log('isCollapsed!');
       this.set('isCollapsed', !this.get('isCollapsed'));
     }
   }
