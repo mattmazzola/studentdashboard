@@ -50,77 +50,68 @@ $(() => {
 		}
 	];
 	
-	const circles = svg
-		.selectAll("xyz")
-		.data(assignments)
-		.enter()
-		.append("circle")
-		.attr({
-			cx: (d,i) => i * 100 + classLegendX + paddingLeft,
-			cy: d => height - (100 + 30 + ((d.classId === 1) ? 5  : 35)),
-			r: 10
-		})
-		.style({
-			fill: 'red'
-		})
-		.text(d => d.title)
-	;
 	
-	const lines = svg
-		.selectAll("xyz")
-		.data(assignments)
-		.enter()
-		.append("line")
-		.attr({
-			x1: (d,i) => i * 100 + classLegendX + paddingLeft,
-			y1: height - paddingBottom,
-			x2: (d,i) => i * 100 + classLegendX + paddingLeft,
-			y2: d => height - (100 + 30 + ((d.classId === 1) ? 5  : 35)),
-			'stroke-width': 2,
-			'stroke': '#ff0000'
-		})
-	;
 	
 	
 	// create x-scale
-	var scale = d3.scale
-		.linear()
-		.domain([0, 500])
+	const minDomainDate = moment('2015-07-25T00:00:00Z');
+	const maxDomainDate = moment('2015-08-10T00:00:00Z');
+	const currentDateMoment = moment().set({
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0
+	});
+	
+	var xScale = d3.time.scale()
+		.domain([minDomainDate, maxDomainDate])
 		.range([classLegendX, width-classLegendX])
 	;
 	
-	const xAxisTickFormat = d3.format("1%");
+	const currentDateLine = svg
+		.append("line")
+		.attr({
+			x1: xScale(currentDateMoment),
+			y1: 0,
+			x2: xScale(currentDateMoment),
+			y2: height,
+			'stroke-width': 2,
+			'stroke': '#965b93'
+		})
 	
-	// Add x axis offsets
-	const xAxisTicks = d3.svg
-		.axis()
-		.scale(scale)
+	
+	// Add x axises
+	const xAxisTicks = d3.svg.axis()
+		.scale(xScale)
 		.orient("bottom")
-		.ticks(10)
+		.ticks(d3.time.days, 2)
 	;
 	
-	const xAxisOffsets = d3.svg
-		.axis()
-		.scale(scale)
+	const xAxisOffsets = d3.svg.axis()
+		.scale(xScale)
 		.orient("bottom")
-		.ticks(10)
-		.tickFormat(n => `+${n}`)
+		.ticks(d3.time.days, 2)
+		.tickFormat(date => {
+			var duration = moment.duration(moment(date).diff(currentDateMoment));
+			var days = duration.asDays();
+			return days;
+		})
 	;
 	
 	const xAxisDates = d3.svg
 		.axis()
-		.scale(scale)
+		.scale(xScale)
 		.orient("bottom")
-		.ticks(10)
-		.tickFormat(n => `7/28`)
+		.ticks(d3.time.days, 2)
+		.tickFormat(date => moment(date).format('M/d'))
 	;
 	
 	const xAxisDays = d3.svg
 		.axis()
-		.scale(scale)
+		.scale(xScale)
 		.orient("bottom")
-		.ticks(10)
-		.tickFormat(n => `Fri`)
+		.ticks(d3.time.days, 2)
+		.tickFormat(date => moment(date).format('dd'))
 	;
 
 	// Add X-axis ticks
@@ -192,5 +183,47 @@ $(() => {
 			y: (d, i) => height - (i * 30 + paddingBottom + 30)
 		})
 		.text(d => d.name)
+	;
+	
+	const stripNonDate = m => {
+		return m.set({
+			hours: 0,
+			minutes: 0,
+			seconds: 0,
+			milliseconds: 0
+		});
+	}
+	
+	const scaledDate = event => xScale(stripNonDate(moment(event.dueDate)));
+	
+	const circles = svg
+		.selectAll("xyz")
+		.data(assignments)
+		.enter()
+		.append("circle")
+		.attr({
+			cx: scaledDate,
+			cy: d => height - (100 + 30 + ((d.classId === 1) ? 5  : 35)),
+			r: 10
+		})
+		.style({
+			fill: '#965b93'
+		})
+		.text(d => d.title)
+	;
+	
+	const lines = svg
+		.selectAll("xyz")
+		.data(assignments)
+		.enter()
+		.append("line")
+		.attr({
+			x1: scaledDate,
+			y1: height - paddingBottom,
+			x2: scaledDate,
+			y2: d => height - (100 + 30 + ((d.classId === 1) ? 5  : 35)),
+			'stroke-width': 2,
+			'stroke': '#965b93'
+		})
 	;
 });

@@ -46,53 +46,42 @@ $(function () {
 		classId: 2
 	}];
 
-	var circles = svg.selectAll("xyz").data(assignments).enter().append("circle").attr({
-		cx: function cx(d, i) {
-			return i * 100 + classLegendX + paddingLeft;
-		},
-		cy: function cy(d) {
-			return height - (100 + 30 + (d.classId === 1 ? 5 : 35));
-		},
-		r: 10
-	}).style({
-		fill: 'red'
-	}).text(function (d) {
-		return d.title;
-	});
-
-	var lines = svg.selectAll("xyz").data(assignments).enter().append("line").attr({
-		x1: function x1(d, i) {
-			return i * 100 + classLegendX + paddingLeft;
-		},
-		y1: height - paddingBottom,
-		x2: function x2(d, i) {
-			return i * 100 + classLegendX + paddingLeft;
-		},
-		y2: function y2(d) {
-			return height - (100 + 30 + (d.classId === 1 ? 5 : 35));
-		},
-		'stroke-width': 2,
-		'stroke': '#ff0000'
-	});
-
 	// create x-scale
-	var scale = d3.scale.linear().domain([0, 500]).range([classLegendX, width - classLegendX]);
-
-	var xAxisTickFormat = d3.format("1%");
-
-	// Add x axis offsets
-	var xAxisTicks = d3.svg.axis().scale(scale).orient("bottom").ticks(10);
-
-	var xAxisOffsets = d3.svg.axis().scale(scale).orient("bottom").ticks(10).tickFormat(function (n) {
-		return "+" + n;
+	var minDomainDate = moment('2015-07-25T00:00:00Z');
+	var maxDomainDate = moment('2015-08-10T00:00:00Z');
+	var currentDateMoment = moment().set({
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0
 	});
 
-	var xAxisDates = d3.svg.axis().scale(scale).orient("bottom").ticks(10).tickFormat(function (n) {
-		return "7/28";
+	var xScale = d3.time.scale().domain([minDomainDate, maxDomainDate]).range([classLegendX, width - classLegendX]);
+
+	var currentDateLine = svg.append("line").attr({
+		x1: xScale(currentDateMoment),
+		y1: 0,
+		x2: xScale(currentDateMoment),
+		y2: height,
+		'stroke-width': 2,
+		'stroke': '#965b93'
 	});
 
-	var xAxisDays = d3.svg.axis().scale(scale).orient("bottom").ticks(10).tickFormat(function (n) {
-		return "Fri";
+	// Add x axises
+	var xAxisTicks = d3.svg.axis().scale(xScale).orient("bottom").ticks(d3.time.days, 2);
+
+	var xAxisOffsets = d3.svg.axis().scale(xScale).orient("bottom").ticks(d3.time.days, 2).tickFormat(function (date) {
+		var duration = moment.duration(moment(date).diff(currentDateMoment));
+		var days = duration.asDays();
+		return days;
+	});
+
+	var xAxisDates = d3.svg.axis().scale(xScale).orient("bottom").ticks(d3.time.days, 2).tickFormat(function (date) {
+		return moment(date).format('M/d');
+	});
+
+	var xAxisDays = d3.svg.axis().scale(xScale).orient("bottom").ticks(d3.time.days, 2).tickFormat(function (date) {
+		return moment(date).format('dd');
 	});
 
 	// Add X-axis ticks
@@ -135,6 +124,42 @@ $(function () {
 		}
 	}).text(function (d) {
 		return d.name;
+	});
+
+	var stripNonDate = function stripNonDate(m) {
+		return m.set({
+			hours: 0,
+			minutes: 0,
+			seconds: 0,
+			milliseconds: 0
+		});
+	};
+
+	var scaledDate = function scaledDate(event) {
+		return xScale(stripNonDate(moment(event.dueDate)));
+	};
+
+	var circles = svg.selectAll("xyz").data(assignments).enter().append("circle").attr({
+		cx: scaledDate,
+		cy: function cy(d) {
+			return height - (100 + 30 + (d.classId === 1 ? 5 : 35));
+		},
+		r: 10
+	}).style({
+		fill: '#965b93'
+	}).text(function (d) {
+		return d.title;
+	});
+
+	var lines = svg.selectAll("xyz").data(assignments).enter().append("line").attr({
+		x1: scaledDate,
+		y1: height - paddingBottom,
+		x2: scaledDate,
+		y2: function y2(d) {
+			return height - (100 + 30 + (d.classId === 1 ? 5 : 35));
+		},
+		'stroke-width': 2,
+		'stroke': '#965b93'
 	});
 });
 //# sourceMappingURL=app.js.map
