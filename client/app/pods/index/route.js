@@ -7,7 +7,8 @@ const categories = [
     items: [
       {
         id: 11,
-        componentName: 'sa-search-assignment',
+        searchComponentName: 'sa-search-assignment',
+        componentName: 'sa-assignment',
         title: 'Artificial Intelligence Paper',
         class: 'CS300',
         points: 150,
@@ -65,7 +66,8 @@ const categories = [
       },
       {
         id: 12,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Assignment 1',
         class: 'CS300',
         points: 150,
@@ -73,7 +75,8 @@ const categories = [
       },
       {
         id: 13,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Assignment 2',
         class: 'CS300',
         points: 150,
@@ -87,15 +90,17 @@ const categories = [
     items: [
       {
         id: 21,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Midterm 1: Static Analysis',
         class: 'PHYS200',
         points: 200,
         dueDate: '2015-07-30T12:00:00Z'
       },
       {
-        id: 21,
-        componentName: 'sa-search-test',
+        id: 22,
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Midterm 2: Static Analysis',
         class: 'PHYS200',
         points: 200,
@@ -109,7 +114,8 @@ const categories = [
     items: [
       {
         id: 31,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Grade 1'
       }
     ]
@@ -120,22 +126,26 @@ const categories = [
     items: [
       {
         id: 41,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Message 1'
       },
       {
         id: 42,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Message 2'
       },
       {
         id: 43,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Message 3'
       },
       {
         id: 44,
-        componentName: 'sa-search-test',
+        searchComponentName: 'sa-search-test',
+        componentName: 'sa-test',
         title: 'Message 4'
       }
     ]

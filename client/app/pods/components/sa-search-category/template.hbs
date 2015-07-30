@@ -4,7 +4,7 @@
 </div>
 <div class="sa-search-category__items {{if isCollapsed 'sa-search-category__items--collapsed'}}">
   {{#each category.items as |item|}}
-    {{component item.componentName model=item}}
+    {{component item.searchComponentName model=item}}
   {{/each}}
 </div>
 {{yield}}

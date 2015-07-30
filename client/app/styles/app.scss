@@ -276,9 +276,14 @@ body > .ember-view,
 		background-color: $purple-highlight;
 	}
 }
+.sa-search-item.active,
 .sa-search-item--selected {
 	background-color: $purple-normal;
 	color: $color-offwhite-font;
+
+	&:hover {
+		background-color: lighten($purple-normal, 10);
+	}
 
 	.sa-search-category__title {
 		color: $color-offwhite;
