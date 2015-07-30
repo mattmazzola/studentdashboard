@@ -1,9 +1,4 @@
-<h1>Timeline</h1>
-
-<ul>
-  {{#each model as |event|}}
-    <li>{{#link-to "timeline.event" event}}Event: {{event.name}}{{/link-to}}</li>
-  {{/each}}
-</ul>
-
+<div class="sa-timeline">
+  {{sa-timeline events=model}}
+</div>
 {{outlet}}

@@ -5,15 +5,15 @@ export default Ember.Route.extend({
     return [
       {
         id: 1,
-        name: 'item 1'
+        title: 'item 1'
       },
       {
         id: 2,
-        name: 'item 2'
+        title: 'item 2'
       },
       {
         id: 3,
-        name: 'item 3'
+        title: 'item 3'
       }
     ];
   }

@@ -23,6 +23,10 @@ button {
 	}
 }
 
+i.ms-Icon--rotate45:before {
+	transform: rotate(45deg);
+}
+
 .list-unstyled {
 	margin: 0;
 	padding: 0;
