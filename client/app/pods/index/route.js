@@ -34,10 +34,23 @@ const categories = [
           {
             title: 'Complete',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-            materials: []
+            materials: [
+              {
+                type: 'Word'
+              }
+            ]
+          },
+          {
+            title: 'Lab',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+            materials: [
+              {
+                type: 'Excel'
+              }
+            ]
           }
         ],
-        history: [
+        events: [
           {
             date: '2015-07-20T11:05:00Z',
             title: 'Created'
