@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import d3 from 'd3';
 
 const {
