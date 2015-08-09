@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 const categories = [
   {
@@ -7,12 +8,13 @@ const categories = [
     items: [
       {
         id: 11,
+        categoryPreviewComponentName: 'sd-search-category-preview-assignment',
         searchComponentName: 'sa-search-assignment',
         componentName: 'sa-assignment',
         title: 'Artificial Intelligence Paper',
         class: 'CS300',
         points: 150,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        description: 'Is Elon Musk really crazy or is AI going to consume the world? Suggested reading: Wait but why? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         dueDate: '2015-07-30T12:00:00Z',
         tags: [
           {
@@ -79,6 +81,7 @@ const categories = [
       },
       {
         id: 12,
+        categoryPreviewComponentName: 'sd-search-category-preview-assignment',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
         title: 'Assignment 1',
@@ -103,9 +106,11 @@ const categories = [
     items: [
       {
         id: 21,
+        categoryPreviewComponentName: 'sd-search-category-preview-assignment',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
         title: 'Midterm 1: Static Analysis',
+        description: 'Covers Chapters 1-8: Forces between stationary objects. Remember to read lorem',
         class: 'PHYS200',
         points: 200,
         dueDate: '2015-07-30T12:00:00Z'
@@ -123,13 +128,23 @@ const categories = [
   },
   {
     id: 3,
+    type: 'grades',
     title: 'Grade Posted',
     items: [
       {
         id: 31,
+        categoryPreviewComponentName: 'sd-search-category-preview-grade',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
-        title: 'Grade 1'
+        title: 'Grade 1',
+        grade: 91,
+        pointsEarned: 74,
+        pointsTotal: 80,
+        gradeAverage: 85,
+        assignmentTitle: 'LCR Circuits Homework',
+        overallGradeChange: 0.50,
+        class: 'ECE200',
+        dueDate: moment().subtract(1, 'days').toJSON()
       }
     ]
   },
@@ -139,27 +154,37 @@ const categories = [
     items: [
       {
         id: 41,
+        categoryPreviewComponentName: 'sd-search-category-preview-message',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
-        title: 'Message 1'
+        title: 'Fermi-lab Field Trip',
+        important: true,
+        message: 'Remember to bring your permission slip...'
       },
       {
         id: 42,
+        categoryPreviewComponentName: 'sd-search-category-preview-message',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
-        title: 'Message 2'
+        title: 'Message 2',
+        important: true,
+        message: 'Remember to bring your permission slip...'
       },
       {
         id: 43,
+        categoryPreviewComponentName: 'sd-search-category-preview-message',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
-        title: 'Message 3'
+        title: 'Message 3',
+        message: 'Remember to bring your permission slip...'
       },
       {
         id: 44,
+        categoryPreviewComponentName: 'sd-search-category-preview-message',
         searchComponentName: 'sa-search-test',
         componentName: 'sa-test',
-        title: 'Message 4'
+        title: 'Message 4',
+        message: 'Remember to bring your permission slip...'
       }
     ]
   }

@@ -1,6 +1,13 @@
 <div class="sa-search-category" {{action "toggleExpand"}}>
   <h2 class="sa-search-category__title"><b>{{category.items.length}}</b> {{category.title}}</h2>
-  <p class="sa-search-category__secondary-text"><span class="sa-search-category__metadata sa-search-category__metadata--date-offset">{{moment-from-now category.items.0.dueDate}}</span><span class="sa-search-category__metadata">{{category.items.0.title}} ({{category.items.0.class}})</span></p>
+  <div class="sa-search-category__preview">
+    <div class="sa-search-category__preview-toggle">
+      <i class="ms-Icon--caretRight ms-Icon--animate {{unless isCollapsed 'ms-Icon--rotate45'}}" />
+    </div>
+    <div class="sa-search-category__preview-container">
+      {{component category.items.0.categoryPreviewComponentName model=category.items.firstObject}}
+    </div>
+  </div>
 </div>
 <div class="sa-search-category__items {{if isCollapsed 'sa-search-category__items--collapsed'}}">
   {{#each category.items as |item|}}
