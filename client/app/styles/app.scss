@@ -298,6 +298,7 @@ body > .ember-view,
 	padding: 10px 20px 13px 20px;
 	padding-left: 40px;
 	border-bottom: 1px solid $grey-light;
+	background-color: #fafafa;
 
 	&:hover:not(.sa-search-item--selected) {
 		background-color: $purple-highlight;
@@ -314,6 +315,14 @@ body > .ember-view,
 	margin: 0;
 	font-size: 14px;
 	color: #505050;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.sa-search-item__terinary-text {
+	margin: 0;
+	font-size: 14px;
+	color: 	#737373;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

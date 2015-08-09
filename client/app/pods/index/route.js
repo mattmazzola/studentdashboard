@@ -174,8 +174,8 @@ const categories = [
       {
         id: 21,
         categoryPreviewComponentName: 'sd-search-category-preview-assignment',
-        searchComponentName: 'sa-search-test',
-        componentName: 'sa-test',
+        searchComponentName: 'sa-search-assignment',
+        componentName: 'sa-assignment',
         title: 'Midterm 1: Static Analysis',
         description: 'Covers Chapters 1-8: Forces between stationary objects. Remember to read lorem',
         class: 'PHYS200',
@@ -184,9 +184,11 @@ const categories = [
       },
       {
         id: 22,
-        searchComponentName: 'sa-search-test',
-        componentName: 'sa-test',
-        title: 'Midterm 2: Static Analysis',
+        categoryPreviewComponentName: 'sd-search-category-preview-assignment',
+        searchComponentName: 'sa-search-assignment',
+        componentName: 'sa-assignment',
+        title: 'Stoichiometry and Balancing Reactions',
+        description: 'Covers chapters 5-7.  Be prepared to show Lewis dot structures, and solve equations. Don\' forget to specify units and explain your answers!',
         class: 'PHYS200',
         points: 200,
         dueDate: '2015-07-30T12:00:00Z'
@@ -201,14 +203,13 @@ const categories = [
       {
         id: 31,
         categoryPreviewComponentName: 'sd-search-category-preview-grade',
-        searchComponentName: 'sa-search-test',
-        componentName: 'sa-test',
-        title: 'Grade 1',
+        searchComponentName: 'sd-search-grade',
+        componentName: 'sa-assignment',
+        title: 'LCR Circuits Homework',
         grade: 91,
         pointsEarned: 74,
         pointsTotal: 80,
         gradeAverage: 85,
-        assignmentTitle: 'LCR Circuits Homework',
         overallGradeChange: 0.50,
         class: 'ECE200',
         dueDate: moment().subtract(1, 'days').toJSON()
@@ -222,36 +223,53 @@ const categories = [
       {
         id: 41,
         categoryPreviewComponentName: 'sd-search-category-preview-message',
-        searchComponentName: 'sa-search-test',
+        searchComponentName: 'sd-search-message',
         componentName: 'sa-test',
         title: 'Fermi-lab Field Trip',
+        author: {
+          name: 'John Patrick'
+        },
+        datePosted: moment().subtract(1, 'hour').toJSON(),
         important: true,
         message: 'Remember to bring your permission slip...'
       },
       {
         id: 42,
         categoryPreviewComponentName: 'sd-search-category-preview-message',
-        searchComponentName: 'sa-search-test',
+        searchComponentName: 'sd-search-message',
         componentName: 'sa-test',
-        title: 'Message 2',
+        title: 'Robotics Club',
+        author: {
+          name: 'Tim'
+        },
+        datePosted: moment().subtract(3, 'hour').toJSON(),
         important: true,
-        message: 'Remember to bring your permission slip...'
+        message: 'Robotics Club Kickoff Meeting on Saturday, January 1st! Bring your tools and your passion for inventing!'
       },
       {
         id: 43,
         categoryPreviewComponentName: 'sd-search-category-preview-message',
-        searchComponentName: 'sa-search-test',
+        searchComponentName: 'sd-search-message',
         componentName: 'sa-test',
-        title: 'Message 3',
-        message: 'Remember to bring your permission slip...'
+        title: 'Meat Club',
+        author: {
+          name: 'Brian Smith'
+        },
+        datePosted: moment().subtract(5, 'hour').toJSON(),
+        message: 'Meat Club @ Mongolian BBQ on 9/22'
       },
       {
         id: 44,
         categoryPreviewComponentName: 'sd-search-category-preview-message',
-        searchComponentName: 'sa-search-test',
+        searchComponentName: 'sd-search-message',
         componentName: 'sa-test',
-        title: 'Message 4',
-        message: 'Remember to bring your permission slip...'
+        title: 'Waterpolo',
+        author: {
+          name: 'Jeremy'
+        },
+        datePosted: moment().subtract(10, 'hour').toJSON(),
+        import: true,
+        message: 'Waterpolo practice cancelled!  Technicians are coming into look at the pump/filter system for the pool.'
       }
     ]
   }

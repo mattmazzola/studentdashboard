@@ -1,0 +1,9 @@
+{{#link-to "index.item" model tagName="div" class="sa-search-item"}}
+  <h3 class="sa-search-item__title">{{model.title}}</h3>
+  <p class="sa-search-item__secondary-text">
+    <span class="sa-search-item__metadata">{{model.grade}}%</span><span class="sa-search-item__metadata">({{model.pointsEarned}}/{{model.pointsTotal}})</span><span class="sa-search-item__metadata">{{model.class}}</span>
+  </p>
+  <p class="sa-search-item__terinary-text">
+    <span class="sa-search-item__metadata">Avg: {{model.gradeAverage}}%</span><span class="sa-search-item__metadata">Change: {{model.overallGradeChange}}%</span>
+  </p>
+{{/link-to}}
