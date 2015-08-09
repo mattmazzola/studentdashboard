@@ -1,4 +1,5 @@
 {{#link-to "index.item" model tagName="div" class="sa-search-item"}}
   <h3 class="sa-search-item__title">{{model.title}}</h3>
-  <p class="sa-search-item__secondary-text"><span class="sa-search-item__metadata sa-search-item__metadata--date-offset">{{moment-from-now model.dueDate}}</span><span class="sa-search-item__metadata">{{item.points}}pts</span><span class="sa-search-item__metadata">{{category.items.0.class}}</span></p>
+  <p class="sa-search-item__secondary-text"><span class="sa-search-item__metadata sa-search-item__metadata--date-offset">{{moment-from-now model.dueDate}}</span><span class="sa-search-item__metadata">{{model.pointsTotal}}pts</span><span class="sa-search-item__metadata">{{model.class}}</span></p>
+  <p class="sa-search-item__secondary-text">{{model.description}}</p>
 {{/link-to}}
