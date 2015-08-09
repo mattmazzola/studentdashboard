@@ -377,6 +377,19 @@ body > .ember-view,
 	display: flex;
 	justify-content: flex-end;
 }
+.sa-item__content {
+	overflow-y: auto;
+	flex: 1;
+	position: relative;
+}
+
+.sa-item-placeholder {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+.sa-item-placeholder__text {
+}
 
 /* Item Command */
 .sa-item-command {
@@ -399,11 +412,7 @@ body > .ember-view,
 	}
 }
 
-.sa-item__content {
-	overflow-y: auto;
-	flex: 1;
-	position: relative;
-}
+
 
 .sa-tags__item {
 	margin-right: 0.5em;
