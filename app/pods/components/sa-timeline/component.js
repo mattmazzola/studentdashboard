@@ -36,8 +36,8 @@ export default Ember.Component.extend({
   	const assignments = this.get('events');
 
   	// create x-scale
-  	const minDomainDate = moment('2015-08-01T00:00:00Z');
-  	const maxDomainDate = moment('2015-08-30T00:00:00Z');
+  	const minDomainDate = moment('2015-08-01T08:00:00Z');
+  	const maxDomainDate = moment('2015-08-30T08:00:00Z');
   	const currentDateMoment = moment().set({
   		hours: 0,
   		minutes: 0,
@@ -45,10 +45,10 @@ export default Ember.Component.extend({
   		milliseconds: 0
   	});
 
-  	var xScale = d3.time.scale()
-  		.domain([minDomainDate, maxDomainDate])
-  		.range([classLegendX, width-classLegendX])
-  	;
+  	const xScale = d3.time.scale()
+	    .domain([minDomainDate, maxDomainDate])
+		  .range([classLegendX, width-classLegendX])
+      ;
 
     // Add current date line.
   	svg

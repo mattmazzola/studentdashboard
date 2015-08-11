@@ -355,7 +355,16 @@ body > .ember-view,
 
 /* Timeline */
 .sa-timeline {
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+
 	flex: 3;
+	display: flex;
+	flex-direction: column;
+}
+.sa-timeline__container {
+	flex: 1;
 	overflow: hidden;
 	position: relative;
 	cursor: pointer;
@@ -368,6 +377,12 @@ body > .ember-view,
 	bottom: 0;
 	background: url('images/checkerbg.png') repeat;
 	display: flex;
+}
+.sa-timeline__brush {
+	height: 40px;
+}
+
+.sd-timeline-brush {
 }
 
 /* Item */

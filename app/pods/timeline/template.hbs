@@ -1,4 +1,12 @@
 <div class="sa-timeline">
-  {{sa-timeline events=model action='itemClicked'}}
+  <div class="sa-timeline__controls">
+    controls
+  </div>
+  <div class="sa-timeline__container">
+    {{sa-timeline events=model action='itemClicked'}}
+  </div>
+  <div class="sa-timeline__brush">
+    {{sd-timeline-brush}}
+  </div>
 </div>
 {{outlet}}
