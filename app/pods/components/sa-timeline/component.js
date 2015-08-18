@@ -194,7 +194,7 @@ export default Ember.Component.extend({
   			fill: '#965b93'
   		})
   		.text(d => d.title)
-      .on('click', (d,i) => {
+      .on('click', (d) => {
         this.sendAction('action', d);
       })
   	;

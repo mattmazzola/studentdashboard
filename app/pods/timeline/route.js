@@ -38,7 +38,7 @@ export default Ember.Route.extend({
 
   actions: {
     itemClicked(item) {
-      this.transitionTo("timeline.event", item)
+      this.transitionTo("timeline.event", item);
     }
   }
 });

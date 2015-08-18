@@ -24,12 +24,12 @@ export default Ember.Component.extend({
     // create x-scale
   	const minDomainDate = moment('2015-08-01T08:00:00Z');
   	const maxDomainDate = moment('2015-08-30T08:00:00Z');
-  	const currentDateMoment = moment().set({
-  		hours: 0,
-  		minutes: 0,
-  		seconds: 0,
-  		milliseconds: 0
-  	});
+  	// const currentDateMoment = moment().set({
+  	// 	hours: 0,
+  	// 	minutes: 0,
+  	// 	seconds: 0,
+  	// 	milliseconds: 0
+  	// });
 
   	const xScale = d3.time.scale()
 	    .domain([minDomainDate, maxDomainDate])
