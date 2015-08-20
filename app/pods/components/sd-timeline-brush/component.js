@@ -24,12 +24,12 @@ export default Ember.Component.extend({
     // create x-scale
   	const minDomainDate = moment('2015-08-01T08:00:00Z');
   	const maxDomainDate = moment('2015-08-30T08:00:00Z');
-  	// const currentDateMoment = moment().set({
-  	// 	hours: 0,
-  	// 	minutes: 0,
-  	// 	seconds: 0,
-  	// 	milliseconds: 0
-  	// });
+  	const currentDateMoment = moment().set({
+  		hours: 0,
+  		minutes: 0,
+  		seconds: 0,
+  		milliseconds: 0
+  	});
 
   	const xScale = d3.time.scale()
 	    .domain([minDomainDate, maxDomainDate])
@@ -37,6 +37,8 @@ export default Ember.Component.extend({
       ;
 
     const brushGroup = svg.append('g');
+    brushGroup.classed("sd-timeline-brush", true);
+
     const brush = d3.svg.brush();
     brush.x(xScale);
     brush(brushGroup);
@@ -47,18 +49,53 @@ export default Ember.Component.extend({
       });
     brushGroup.selectAll(".background")
       .style({
-        fill: "#4B9E9E",
         visibility: "visible"
       });
     brushGroup.selectAll(".extent")
       .style({
-        fill: "#78C5C",
         visibility: "visible"
       });
-    brushGroup.selectAll(".extent")
+    brushGroup.selectAll(".resize rect")
       .style({
-        fill: "#276C86",
         visibility: "visible"
       });
+
+    const fakeEvents = this.get('events');
+
+    brushGroup.selectAll('rect .events')
+      .data(fakeEvents)
+      .enter()
+      .append('rect')
+        .classed('event', true)
+        .attr({
+          x: d => xScale(moment(d.dueDate)),
+          y: 0,
+          width: 1,
+          height: 30
+        })
+        .style("pointer-events", "none")
+      ;
+
+    brush.on("brushend", () => {
+      let ext = brush.extent();
+      let [brushStart, brushEnd] = ext;
+
+      var filtered = fakeEvents.filter(d => {
+        return (moment(d.dueDate) > brushStart && moment(d.dueDate) < brushEnd);
+      });
+
+      brushGroup.selectAll("rect.event")
+        .classed("selected", false)
+      ;
+
+      brushGroup.selectAll("rect.event")
+        .data(filtered, d => { return d.id; })
+        .classed("selected", true)
+      ;
+
+      this.sendAction('action', { start: brushStart, end: brushEnd });
+    });
+
+
   })
 });
