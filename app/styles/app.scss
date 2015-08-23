@@ -375,7 +375,6 @@ body > .ember-view,
 	top: 0;
 	// right: -20%;
 	bottom: 0;
-	background: url('images/checkerbg.png') repeat;
 	display: flex;
 }
 .sa-timeline__brush {
@@ -580,16 +579,31 @@ body > .ember-view,
 }
 
 /* d3 */
+.axis--x path,
+.axis--x line,
+.axis--y path,
+.axis--y line {
+	fill: none;
+}
+.axis--y-grid text {
+	transform: translateX(0,50);
+}
+.axis--y-grid path,
+.axis--y-grid line,
+.axis--x-grid path,
+.axis--x-grid line {
+	stroke: rgba(0, 0, 0, 0.2);
+	stroke-width: 1px;
+}
 .axis--x-ticks path,
 .axis--x-ticks line {
-    fill: none;
-    stroke: $purple-dark;
+  stroke: $purple-dark;
 	stroke-width: 2px;
-    shape-rendering: crispEdges;
+  shape-rendering: crispEdges;
 }
 
 .axis--x-ticks text {
-    display: none;
+	display: none;
 }
 
 .axis--x-offsets path,
@@ -598,14 +612,14 @@ body > .ember-view,
 .axis--x-dates line,
 .axis--x-days path,
 .axis--x-days line {
-    display: none;
+  display: none;
 }
 
 .axis--x-offsets text,
 .axis--x-dates text,
 .axis--x-days text {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
 	font-weight: lighter;
 	stroke: $purple-dark;
 }

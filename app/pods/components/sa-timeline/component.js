@@ -45,6 +45,9 @@ export default Ember.Component.extend({
   		milliseconds: 0
   	});
 
+
+
+
   	const xScale = d3.time.scale()
 	    .domain([minDomainDate, maxDomainDate])
 		  .range([classLegendX, width-classLegendX])
@@ -63,7 +66,17 @@ export default Ember.Component.extend({
   		})
     ;
 
-  	// Add x axises
+
+
+  	// Add x axes
+    const xAxisGrid = d3.svg.axis()
+  		.scale(xScale)
+  		.orient("bottom")
+      .tickSize(-height)
+  		.ticks(d3.time.days, 1)
+      .tickFormat("")
+  	;
+
   	const xAxisTicks = d3.svg.axis()
   		.scale(xScale)
   		.orient("bottom")
@@ -106,6 +119,16 @@ export default Ember.Component.extend({
   		.attr("transform", "translate(0," + (height - paddingBottom) + ")")
   		.call(xAxisTicks)
   	;
+
+    svg
+  		.append("g")
+  		.attr({
+  			class: "axis axis--x axis--x-grid"
+  		})
+  		.attr("transform", "translate(0," + (height - paddingBottom) + ")")
+  		.call(xAxisGrid)
+  	;
+
   	// Add X-axis Offsets
   	svg
   		.append("g")
@@ -155,18 +178,31 @@ export default Ember.Component.extend({
   		}
   	];
 
-  	svg
-  		.selectAll("xyz")
-  		.data(classes)
-  		.enter()
-  		.append("text")
+    const yScale = d3.scale.ordinal()
+      .domain(classes.map(x => x.name))
+      .rangeRoundPoints([0, 400])
+    ;
+
+    // Add y axes
+    const yAxisGrid = d3.svg.axis()
+      .scale(yScale)
+      .tickSize(-width)
+      .orient("left")
+    ;
+
+    svg
+  		.append("g")
   		.attr({
-  			'text-anchor': 'end',
-  			x: classLegendX,
-  			y: (d, i) => height - (i * 30 + paddingBottom + 30)
+  			class: "axis axis--y axis--y-grid"
   		})
-  		.text(d => d.name)
+    	.attr("transform", `translate(${130},${(height - paddingBottom - 500)})`)
+  		.call(yAxisGrid)
   	;
+
+    svg
+      .selectAll('.axis--y-grid text')
+      .attr("transform", `translate(${-50},0)`)
+    ;
 
   	const stripNonDate = m => {
   		return m.set({
@@ -187,8 +223,8 @@ export default Ember.Component.extend({
   		.append("circle")
   		.attr({
   			cx: scaledDate,
-  			cy: d => height - (paddingBottom + 30 + ((d.classId === 1) ? 5  : 35)),
-  			r: 10
+  			cy: d => yScale(d.classId) + height - paddingBottom - 500,
+  			r: 25
   		})
   		.style({
   			fill: '#965b93'
@@ -209,9 +245,9 @@ export default Ember.Component.extend({
   			x1: scaledDate,
   			y1: height - paddingBottom,
   			x2: scaledDate,
-  			y2: d => height - (paddingBottom + 30 + ((d.classId === 1) ? 5  : 35)),
+  			y2: d => yScale(d.classId) + height - paddingBottom - 500,
   			'stroke-width': 2,
-  			'stroke': '#965b93'
+  			'stroke': 'rgba(150, 91, 147, 0.5)'
   		})
   	;
   })
