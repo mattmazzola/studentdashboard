@@ -60,7 +60,7 @@ export default Ember.Component.extend({
         visibility: "visible"
       });
 
-    const fakeEvents = this.get('events');
+    const fakeEvents = this.get('events').map(event => event.toJSON());
 
     brushGroup.selectAll('rect .events')
       .data(fakeEvents)

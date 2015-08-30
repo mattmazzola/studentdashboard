@@ -33,7 +33,13 @@ export default Ember.Component.extend({
   			preserveAspectRatio: 'xMidYMid'
   		});
 
-  	const assignments = this.get('events');
+    const events = this.get('events');
+
+  	const assignments = events.map(event => {
+      let assignment = event.toJSON()
+      assignment.id = event.get('id');
+      return assignment;
+    });
 
   	// create x-scale
   	const minDomainDate = moment('2015-08-01T08:00:00Z');
@@ -231,7 +237,8 @@ export default Ember.Component.extend({
   		})
   		.text(d => d.title)
       .on('click', (d) => {
-        this.sendAction('action', d);
+        const model = events.find(event => event.get('id') === d.id);
+        this.sendAction('action', model);
       })
   	;
 
