@@ -28,6 +28,12 @@ export default function() {
     this.get('/contacts/:id', ['contact', 'addresses']);
   */
   this.get('/events');
+  this.get('/categories');
+  this.get('/categories/:id');
+  this.get('/activities');
+  this.get('/activities/:id');
+  this.get('/items');
+  this.get('/items/:id');
 
   /*
     POST shorthands

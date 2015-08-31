@@ -5,7 +5,7 @@
       <i class="ms-Icon--caretRight ms-Icon--animate {{unless isCollapsed 'ms-Icon--rotate45'}}" />
     </div>
     <div class="sa-search-category__preview-container">
-      {{component category.items.0.categoryPreviewComponentName model=category.items.firstObject}}
+      {{component category.items.firstObject.categoryPreviewComponentName model=category.items.firstObject}}
     </div>
   </div>
 </div>

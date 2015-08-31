@@ -1,7 +1,7 @@
 <div class="sa-assignment">
   <h1 class="sa-assignment__title">{{model.title}}</h1>
   <p class="sa-assignment__metadatas">
-    <span class="sa-assignment__metadata">{{model.dueDate}}</span>
+    <span class="sa-assignment__metadata">{{moment-from-now model.dueDate}}</span>
   </p>
   <p class="sa-assignment__description">{{model.description}}</p>
   <ul class="sa-tags list-unstyled list-inline clearfix">
@@ -32,13 +32,8 @@
     {{#each model.activities as |activity|}}
       <div class="sa-activity">
         <div class="sa-activity__data">
-          <h3 class="sa-activity__title">{{activity.title}}</h3>
-          <p class="sa-activity__description">{{activity.description}}</p>
-          <div class="sa-materials">
-            {{#each activity.materials as |material| }}
-              {{material.type}}
-            {{/each}}
-          </div>
+          <h3 class="sa-activity__title">{{activity.name}}</h3>
+          <p class="sa-activity__description">{{activity.action}}</p>
         </div>
         <div class="sa-activity__grade sa-activity__status">
           <i class="ms-Icon--circleFill"></i> Not Started
