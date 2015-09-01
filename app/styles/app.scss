@@ -368,13 +368,6 @@ body > .ember-view,
 	overflow: hidden;
 	position: relative;
 	cursor: pointer;
-}
-.sa-timeline__inner {
-	width: 2000px;
-	position: absolute;
-	top: 0;
-	// right: -20%;
-	bottom: 0;
 	display: flex;
 }
 .sa-timeline__brush {
@@ -579,6 +572,10 @@ body > .ember-view,
 }
 
 /* d3 */
+rect.zoomtarget {
+	fill: rgba(0,0,0,0);
+}
+
 .axis--x path,
 .axis--x line,
 .axis--y path,
@@ -588,7 +585,6 @@ body > .ember-view,
 .axis--y-grid text {
 	transform: translateX(0,50);
 }
-.axis--y-grid path,
 .axis--y-grid line,
 .axis--x-grid path,
 .axis--x-grid line {

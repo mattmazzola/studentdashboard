@@ -7,43 +7,27 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  classNames: ['sa-timeline__inner'],
+  classNames: ['sa-timeline__container'],
 
   setupSvg: on('didInsertElement', function () {
-
-    var $ = window.jQuery;
     const height = 800;
-  	const width = 2000;
+  	const width = 1800;
   	//const aspect = Math.floor(height / width);
   	//const paddingLeft = 100;
   	const paddingBottom = 200;
   	const classLegendX = 130;
-  	const rootSelector = ".sa-timeline__inner";
-  	const root = $(rootSelector);
-
-  	root.draggable({
-  		axis: 'x'
-  	});
-
-  	const container = d3.select(rootSelector);
-  	const svg = container.append("svg")
-  		.attr({
-  			width: '100%',
-  			viewBox: `0 0 ${width} ${height}`,
-  			preserveAspectRatio: 'xMidYMid'
-  		});
-
+  	const rootSelector = ".sa-timeline__container";
     const events = this.get('events');
 
   	const assignments = events.map(event => {
-      let assignment = event.toJSON()
+      let assignment = event.toJSON();
       assignment.id = event.get('id');
       return assignment;
     });
 
   	// create x-scale
-  	const minDomainDate = moment('2015-08-01T08:00:00Z');
-  	const maxDomainDate = moment('2015-08-30T08:00:00Z');
+  	const minDomainDate = moment().add(-10, 'days');
+  	const maxDomainDate = moment().add(30, 'days');
   	const currentDateMoment = moment().set({
   		hours: 0,
   		minutes: 0,
@@ -51,34 +35,16 @@ export default Ember.Component.extend({
   		milliseconds: 0
   	});
 
-
-
-
   	const xScale = d3.time.scale()
 	    .domain([minDomainDate, maxDomainDate])
 		  .range([classLegendX, width-classLegendX])
       ;
 
-    // Add current date line.
-  	svg
-  		.append("line")
-  		.attr({
-  			x1: xScale(currentDateMoment),
-  			y1: 0,
-  			x2: xScale(currentDateMoment),
-  			y2: height,
-  			'stroke-width': 2,
-  			'stroke': '#965b93'
-  		})
-    ;
-
-
-
   	// Add x axes
     const xAxisGrid = d3.svg.axis()
   		.scale(xScale)
   		.orient("bottom")
-      .tickSize(-height)
+      .tickSize(-height+300)
   		.ticks(d3.time.days, 1)
       .tickFormat("")
   	;
@@ -115,6 +81,93 @@ export default Ember.Component.extend({
   		.ticks(d3.time.days, 2)
   		.tickFormat(date => moment(date).format('ddd'))
   	;
+    // Add Class Legend
+  	const classes = [
+  		{
+  			name: 'ECE200',
+  		},
+  		{
+  			name: 'CHEM330'
+  		},
+  		{
+  			name: 'PHYS200'
+  		},
+  		{
+  			name: 'MATH300'
+  		},
+  		{
+  			name: 'PSY100'
+  		}
+  	];
+
+    const yScale = d3.scale.ordinal()
+      .domain(classes.map(x => x.name))
+      .rangeRoundPoints([0, 400])
+    ;
+
+    // Add y axes
+    const yAxisGrid = d3.svg.axis()
+      .scale(yScale)
+      .tickSize(-width+260)
+      .orient("left")
+    ;
+    const stripNonDate = m => {
+  		return m.set({
+  			hours: 0,
+  			minutes: 0,
+  			seconds: 0,
+  			milliseconds: 0
+  		});
+  	};
+
+  	const scaledDate = event => xScale(stripNonDate(moment(event.dueDate)));
+
+    const zoomed = (svg) => {
+      svg.select('.axis--x-ticks').call(xAxisTicks);
+      svg.select('.axis--x-grid').call(xAxisGrid);
+      svg.select('.axis--x-offsets').call(xAxisOffsets);
+      svg.select('.axis--x-dates').call(xAxisDates);
+      svg.select('.axis--x-days').call(xAxisDays);
+
+      svg.selectAll('line.eventpole')
+        .attr({
+          x1: scaledDate,
+          x2: scaledDate
+        })
+      ;
+
+      svg.selectAll('circle.event')
+        .attr({
+          cx: scaledDate,
+    			cy: d => yScale(d.classId) + height - paddingBottom - 500,
+        })
+      ;
+    };
+
+    const zoom = d3.behavior.zoom()
+      .x(xScale)
+      .scaleExtent([1, 3])
+      .on("zoom", () => zoomed(svg))
+    ;
+
+    const container = d3.select(rootSelector);
+  	const svg = container.append("svg")
+  		.attr({
+  			width: '100%',
+  			viewBox: `0 0 ${width} ${height}`,
+  			preserveAspectRatio: 'xMidYMid'
+  		})
+    ;
+
+    svg
+      .append('rect')
+      .attr({
+        width: width,
+        height: height
+      })
+      .classed('zoomtarget', true)
+      .call(zoom)
+    ;
 
   	// Add X-axis ticks
   	svg
@@ -165,37 +218,6 @@ export default Ember.Component.extend({
   		.call(xAxisDays)
   	;
 
-  	// Add Class Legend
-  	const classes = [
-  		{
-  			name: 'ECE200',
-  		},
-  		{
-  			name: 'CHEM330'
-  		},
-  		{
-  			name: 'PHYS200'
-  		},
-  		{
-  			name: 'MATH300'
-  		},
-  		{
-  			name: 'PSY100'
-  		}
-  	];
-
-    const yScale = d3.scale.ordinal()
-      .domain(classes.map(x => x.name))
-      .rangeRoundPoints([0, 400])
-    ;
-
-    // Add y axes
-    const yAxisGrid = d3.svg.axis()
-      .scale(yScale)
-      .tickSize(-width)
-      .orient("left")
-    ;
-
     svg
   		.append("g")
   		.attr({
@@ -210,23 +232,13 @@ export default Ember.Component.extend({
       .attr("transform", `translate(${-50},0)`)
     ;
 
-  	const stripNonDate = m => {
-  		return m.set({
-  			hours: 0,
-  			minutes: 0,
-  			seconds: 0,
-  			milliseconds: 0
-  		});
-  	};
 
-  	const scaledDate = event => xScale(stripNonDate(moment(event.dueDate)));
-
-  	//const circles =
     svg
   		.selectAll("xyz")
   		.data(assignments)
   		.enter()
   		.append("circle")
+      .classed('event', true)
   		.attr({
   			cx: scaledDate,
   			cy: d => yScale(d.classId) + height - paddingBottom - 500,
@@ -242,12 +254,12 @@ export default Ember.Component.extend({
       })
   	;
 
-  	//const lines =
     svg
   		.selectAll("xyz")
   		.data(assignments)
   		.enter()
   		.append("line")
+      .classed('eventpole', true)
   		.attr({
   			x1: scaledDate,
   			y1: height - paddingBottom,
