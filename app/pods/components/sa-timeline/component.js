@@ -82,23 +82,7 @@ export default Ember.Component.extend({
   		.tickFormat(date => moment(date).format('ddd'))
   	;
     // Add Class Legend
-  	const classes = [
-  		{
-  			name: 'ECE200',
-  		},
-  		{
-  			name: 'CHEM330'
-  		},
-  		{
-  			name: 'PHYS200'
-  		},
-  		{
-  			name: 'MATH300'
-  		},
-  		{
-  			name: 'PSY100'
-  		}
-  	];
+  	const classes = assignments.map(assignment => { return { name: assignment.classId}; })
 
     const yScale = d3.scale.ordinal()
       .domain(classes.map(x => x.name))
