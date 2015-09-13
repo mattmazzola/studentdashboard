@@ -8,10 +8,10 @@ import moment from 'moment';
 
 export default Mirage.Factory.extend({
   id: i => i,
-  dueDate: i => moment('2015-08-29T08:00:00Z').add(i, 'days').toJSON(),
+  dueDate: i => moment().add(i, 'days').toJSON(),
   title: i => `Assignment ${i}`,
   description: i => `The description of assignments ${i}`,
-  classId: faker.list.cycle('ECE200', 'PSY100', 'PHYS200')
+  classId: faker.list.random('ECE200', 'CHEM330', 'PSY100', 'MATH300', 'PHYS200')
 
   // name: 'Pete',                         // strings
   // age: 20,                              // numbers

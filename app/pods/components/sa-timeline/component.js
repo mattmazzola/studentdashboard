@@ -58,7 +58,7 @@ export default Ember.Component.extend({
   	const xAxisOffsets = d3.svg.axis()
   		.scale(xScale)
   		.orient("bottom")
-  		.ticks(d3.time.days, 2)
+  		// .ticks(d3.time.days, 2)
   		.tickFormat(date => {
   			var duration = moment.duration(moment(date).diff(currentDateMoment));
   			var days = duration.asDays();
@@ -70,7 +70,7 @@ export default Ember.Component.extend({
   		.axis()
   		.scale(xScale)
   		.orient("bottom")
-  		.ticks(d3.time.days, 2)
+  		// .ticks(d3.time.days, 2)
   		.tickFormat(date => moment(date).format('M/D'))
   	;
 
@@ -78,7 +78,7 @@ export default Ember.Component.extend({
   		.axis()
   		.scale(xScale)
   		.orient("bottom")
-  		.ticks(d3.time.days, 2)
+  		// .ticks(d3.time.days, 2)
   		.tickFormat(date => moment(date).format('ddd'))
   	;
     // Add Class Legend
@@ -146,7 +146,7 @@ export default Ember.Component.extend({
 
     const zoom = d3.behavior.zoom()
       .x(xScale)
-      .scaleExtent([1, 3])
+      .scaleExtent([0.125, 3])
       .on("zoom", () => zoomed(svg))
     ;
 
