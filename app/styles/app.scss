@@ -357,7 +357,6 @@ body > .ember-view,
 .sa-timeline {
 	overflow: hidden;
 	position: relative;
-	cursor: pointer;
 
 	flex: 3;
 	display: flex;
@@ -640,5 +639,65 @@ rect.zoomtarget {
 		&.selected {
 			fill: #e1e1e1;
 		}
+	}
+}
+
+.sa-timeline__controls {
+	background-color: $purple-dark;
+	color: $color-offwhite-font;
+}
+.sd-timeline-controls {
+
+}
+.sd-timeline-controls-tabs {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sd-timeline-controls-tabs__tab {
+	display: block;
+	float: left;
+}
+.sd-timeline-controls-tab {
+	padding: 12.5px 1.2em;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border: none;
+	background: none;
+	color: $color-offwhite-font;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba(255,255,255,0.1);
+	}
+}
+.sd-timeline-controls-tab--active {
+	background-color: $color-offwhite;
+	color: $grey-73;
+
+	&:hover {
+		background-color: $color-offwhite;
+	}
+}
+.sd-timeline-controls__commands {
+	background-color: $color-offwhite;
+	color: $grey-73;
+}
+.sd-timeline-controls-commands {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sd-timeline-controls-commands__command {
+	float: left;
+}
+.sd-timeline-controls-command {
+	padding: 1.33em;
+	border: none;
+	background: none;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba(0,0,0,0.1);
 	}
 }
