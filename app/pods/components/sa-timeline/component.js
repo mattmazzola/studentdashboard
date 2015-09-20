@@ -12,6 +12,8 @@ export default Ember.Component.extend({
   setupSvg: on('didInsertElement', function () {
     const height = 800;
   	const width = 1800;
+    const minScale = 0.125;
+    const maxScale = 3;
   	//const aspect = Math.floor(height / width);
   	//const paddingLeft = 100;
   	const paddingBottom = 200;
@@ -25,15 +27,19 @@ export default Ember.Component.extend({
       return assignment;
     });
 
+    const stripNonDate = m => {
+  		return m.set({
+  			hours: 0,
+  			minutes: 0,
+  			seconds: 0,
+  			milliseconds: 0
+  		});
+  	};
+
   	// create x-scale
-  	const minDomainDate = moment().add(-10, 'days');
-  	const maxDomainDate = moment().add(30, 'days');
-  	const currentDateMoment = moment().set({
-  		hours: 0,
-  		minutes: 0,
-  		seconds: 0,
-  		milliseconds: 0
-  	});
+  	const minDomainDate = stripNonDate(moment()).add(-10, 'days');
+  	const maxDomainDate = stripNonDate(moment()).add(30, 'days');
+  	const currentDateMoment = stripNonDate(moment());
 
   	const xScale = d3.time.scale()
 	    .domain([minDomainDate, maxDomainDate])
@@ -61,7 +67,7 @@ export default Ember.Component.extend({
   		// .ticks(d3.time.days, 2)
   		.tickFormat(date => {
   			var duration = moment.duration(moment(date).diff(currentDateMoment));
-  			var days = duration.asDays();
+  			var days = Math.floor(duration.asDays());
   			return days;
   		})
   	;
@@ -82,7 +88,7 @@ export default Ember.Component.extend({
   		.tickFormat(date => moment(date).format('ddd'))
   	;
     // Add Class Legend
-  	const classes = assignments.map(assignment => { return { name: assignment.classId}; })
+  	const classes = assignments.map(assignment => { return { name: assignment.classId}; });
 
     const yScale = d3.scale.ordinal()
       .domain(classes.map(x => x.name))
@@ -95,16 +101,24 @@ export default Ember.Component.extend({
       .tickSize(-width+260)
       .orient("left")
     ;
-    const stripNonDate = m => {
-  		return m.set({
-  			hours: 0,
-  			minutes: 0,
-  			seconds: 0,
-  			milliseconds: 0
-  		});
-  	};
+
 
   	const scaledDate = event => xScale(stripNonDate(moment(event.dueDate)));
+
+    const container = d3.select(rootSelector);
+  	const svg = container.append("svg")
+  		.attr({
+  			width: '100%',
+  			viewBox: `0 0 ${width} ${height}`,
+  			preserveAspectRatio: 'xMidYMid'
+  		})
+    ;
+
+    const zoom = d3.behavior.zoom()
+      .x(xScale)
+      .scaleExtent([minScale, maxScale])
+      .on("zoom", () => zoomed(svg))
+    ;
 
     const zoomed = (svg) => {
       svg.select('.axis--x-ticks').call(xAxisTicks);
@@ -126,22 +140,37 @@ export default Ember.Component.extend({
     			cy: d => yScale(d.classId) + height - paddingBottom - 500,
         })
       ;
+
+      // TODO: How to add limits to panning / translating.
+      // https://github.com/mbostock/d3/issues/1084
+      const [ translateX, translateY ] = zoom.translate();
+      const [ viewPortDomainMin, viewPortdomainMax ] = xScale.domain();
+      const [ minRangePixel, maxRangePixel ] = xScale.range();
+      const viewPortRangeMin = xScale(minDomainDate);
+      const viewPortRangeMax = xScale(maxDomainDate);
+
+      console.log(`zoomed:
+domainMin:\t\t\t${minDomainDate.toString()}
+viewPortDomainMin:\t${viewPortDomainMin}
+viewPortRangeMin:\t${viewPortRangeMin}
+
+domainMax:\t\t\t${maxDomainDate.toString()}
+viewPortdomainMax:\t${viewPortdomainMax}
+viewPortRangeMax:\t${viewPortRangeMax}
+
+translateX:\t\t${translateX}
+minRangePixel:\t${minRangePixel}
+maxRangePixel:\t${maxRangePixel}
+scale:\t\t${zoom.scale()}
+`);
+
+      // if(viewPortRangeMin > minRangePixel) {
+      //   zoom.translate([0, translateY]);
+      // }
+      // else if(domainMax > maxDomainDate) {
+      //   zoom.translate([translateX - maxRangePixel + rangeMax, translateY]);
+      // }
     };
-
-    const zoom = d3.behavior.zoom()
-      .x(xScale)
-      .scaleExtent([0.125, 3])
-      .on("zoom", () => zoomed(svg))
-    ;
-
-    const container = d3.select(rootSelector);
-  	const svg = container.append("svg")
-  		.attr({
-  			width: '100%',
-  			viewBox: `0 0 ${width} ${height}`,
-  			preserveAspectRatio: 'xMidYMid'
-  		})
-    ;
 
     svg
       .append('rect')
