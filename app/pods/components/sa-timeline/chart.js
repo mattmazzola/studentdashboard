@@ -4,8 +4,8 @@ import d3 from 'd3';
 function timeline() {
   const height = 800;
   const width = 1800;
-  const minScale = 0.125;
-  const maxScale = 3;
+  const minScale = 1;
+  const maxScale = 10;
   //const aspect = Math.floor(height / width);
   //const paddingLeft = 100;
   const paddingBottom = 200;
@@ -22,19 +22,19 @@ function timeline() {
   };
 
   const minDomainDate = stripNonDate(moment()).add(-10, 'days');
-  const maxDomainDate = stripNonDate(moment()).add(30, 'days');
+  const maxDomainDate = stripNonDate(moment()).add(100, 'days');
   const currentDateMoment = stripNonDate(moment());
 
-  const circleRadius = (defaultScale) => {
+  const circleRadius = (circleDefaultRadius, maxScale) => {
     return (scale) => {
-      if(scale > 1) {
+      if(scale > 7) {
         return circleDefaultRadius;
       }
       else {
-        return scale * circleDefaultRadius;
+        return scale/maxScale * circleDefaultRadius;
       }
     }
-  }(circleDefaultRadius);
+  }(circleDefaultRadius, maxScale);
 
   let classes;
   let data;
@@ -139,11 +139,6 @@ function timeline() {
     ;
 
     const zoomed = (svg) => {
-      svg.select('.axis--x-ticks').call(xAxisTicks);
-      svg.select('.axis--x-grid').call(xAxisGrid);
-      svg.select('.axis--x-offsets').call(xAxisOffsets);
-      svg.select('.axis--x-dates').call(xAxisDates);
-      svg.select('.axis--x-days').call(xAxisDays);
 
       // TODO: How to add limits to panning / translating.
       // https://github.com/mbostock/d3/issues/1084
@@ -153,22 +148,6 @@ function timeline() {
       const viewPortRangeMin = xScale(minDomainDate);
       const viewPortRangeMax = xScale(maxDomainDate);
       const scale = zoom.scale();
-
-      svg.selectAll('line.eventpole')
-        .attr({
-          x1: scaledDate,
-          x2: scaledDate
-        })
-      ;
-
-      svg.selectAll('circle.event')
-        .attr({
-          cx: scaledDate,
-          cy: d => yScale(d.classId) + height - paddingBottom - 500,
-          r: circleRadius(scale)
-        })
-      ;
-
 
       console.log(`zoomed:
         domainMin:\t\t\t${minDomainDate.toString()}
@@ -191,7 +170,32 @@ function timeline() {
       // else if(domainMax > maxDomainDate) {
       //   zoom.translate([translateX - maxRangePixel + rangeMax, translateY]);
       // }
+
+      svg.select('.axis--x-ticks').call(xAxisTicks);
+      svg.select('.axis--x-grid').call(xAxisGrid);
+      svg.select('.axis--x-offsets').call(xAxisOffsets);
+      svg.select('.axis--x-dates').call(xAxisDates);
+      svg.select('.axis--x-days').call(xAxisDays);
+
+      svg.selectAll('line.eventpole')
+        .attr({
+          x1: scaledDate,
+          x2: scaledDate
+        })
+      ;
+
+      svg.selectAll('circle.event')
+        .attr({
+          cx: scaledDate,
+          cy: d => yScale(d.classId) + height - paddingBottom - 500,
+          r: circleRadius(scale)
+        })
+      ;
+
     };
+
+    zoom.scale(5);
+    zoom.translate([-900,0]);
 
     svg
       .append('rect')
@@ -276,7 +280,7 @@ function timeline() {
   		.attr({
   			cx: scaledDate,
   			cy: d => yScale(d.classId) + height - paddingBottom - 500,
-  			r: 25
+  			r: circleRadius(zoom.scale())
   		})
   		.style({
   			fill: '#965b93'
@@ -304,6 +308,7 @@ function timeline() {
   			'stroke': 'rgba(150, 91, 147, 0.5)'
   		})
   	;
+
   };
 
 

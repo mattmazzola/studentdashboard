@@ -691,6 +691,9 @@ rect.zoomtarget {
 .sd-timeline-controls-commands__command {
 	float: left;
 }
+.sd-timeline-controls-command-menu-container {
+	position: relative;
+}
 .sd-timeline-controls-command {
 	padding: 1.33em;
 	border: none;
@@ -699,5 +702,19 @@ rect.zoomtarget {
 
 	&:hover {
 		background-color: rgba(0,0,0,0.1);
+	}
+}
+.sd-timeline-controls-command-menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: $color-offwhite;
+	border: 1px solid $grey-73;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		padding: 1em;
 	}
 }
