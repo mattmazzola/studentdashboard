@@ -1,58 +1,33 @@
 <div class="sd-timeline-controls">
   <ul class="sd-timeline-controls-tabs clearfix">
-    <li class="sd-timeline-controls-tabs__tab">
-      <button type="button" class="sd-timeline-controls-tab sd-timeline-controls-tab--active">View</button>
-    </li>
-    <li class="sd-timeline-controls-tabs__tab">
-      <button type="button" class="sd-timeline-controls-tab">Insert</button>
-    </li>
+    {{#each configuration.tabs as |tab| }}
+      <li class="sd-timeline-controls-tabs__tab">
+        <button type="button" class="sd-timeline-controls-tab {{if (eq activeTab tab) 'sd-timeline-controls-tab--active'}}" {{action "selectTab" tab}} >{{tab.name}}</button>
+      </li>
+    {{/each}}
   </ul>
   <div class="sd-timeline-controls__commands">
-    <ul class="sd-timeline-controls-commands clearfix">
-      <li class="sd-timeline-controls-commands__command">
-        <button type="button" class="sd-timeline-controls-command" {{action "classesCommandClicked"}}>
-          <i class="ms-Icon--multiChoice"></i> Classes <i class="ms-Icon--chevronThickDown"></i>
-        </button>
-        <div class="sd-timeline-controls-command-menu-container">
-          <ul class="sd-timeline-controls-command-menu {{unless isClassesMenuVisible 'sd-timeline-controls-command-menu--hide'}}">
-            <li class="sd-timeline-controls-command-menu__item sd-timeline-controls-command-menu__item--border-bottom">
-              <button type="button" class="sd-timeline-controls-command-menu-button">
-                <i class="ms-Icon--star"></i> All
-              </button>
-            </li>
-            <li>
-              <button type="button" class="sd-timeline-controls-command-menu-button" {{action "dropDownItemClicked"}}>
-                <i class="ms-Icon--star"></i> PHYS200
-              </button>
-            </li>
-            <li>
-              <button type="button" class="sd-timeline-controls-command-menu-button" {{action "dropDownItemClicked"}}>
-                <i class="ms-Icon--star"></i> PSYC100
-              </button>
-            </li>
-            <li>
-              <button type="button" class="sd-timeline-controls-command-menu-button" {{action "dropDownItemClicked"}}>
-                <i class="ms-Icon--star"></i> CHEM230
-              </button>
-            </li>
-            <li>
-              <button type="button" class="sd-timeline-controls-command-menu-button" {{action "dropDownItemClicked"}}>
-                <i class="ms-Icon--star"></i> MATH100
-              </button>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="sd-timeline-controls-commands__command">
-        <button type="button" class="sd-timeline-controls-command" {{action "projectionsCommandClicked"}}>
-          <i class="ms-Icon--tasks"></i> Projections
-        </button>
-      </li>
-      <li class="sd-timeline-controls-commands__command">
-        <button type="button" class="sd-timeline-controls-command" {{action "holidaysCommandClicked"}}>
-          <i class="ms-Icon--tasks"></i> Holidays
-        </button>
-      </li>
-    </ul>
+      <ul class="sd-timeline-controls-commands clearfix">
+        {{#each activeCommands as |command| }}
+          <li class="sd-timeline-controls-commands__command">
+            <button type="button" class="sd-timeline-controls-command" {{action "classesCommandClicked"}}>
+              <i class="{{command.iconClass}}"></i> {{command.name}} {{#if command.dropdown}}<i class="ms-Icon--chevronThickDown"></i>{{/if}}
+            </button>
+            {{#if command.dropdown}}
+              <div class="sd-timeline-controls-command-menu-container">
+                <ul class="sd-timeline-controls-command-menu {{unless isClassesMenuVisible 'sd-timeline-controls-command-menu--hide'}}">
+                  {{#each command.dropdownItems as |item| }}
+                    <li class="sd-timeline-controls-command-menu__item {{if item.divider 'sd-timeline-controls-command-menu__item--border-bottom'}}">
+                      <button type="button" class="sd-timeline-controls-command-menu-button">
+                        <i class="{{item.iconClass}}"></i> {{item.name}}
+                      </button>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
   </div>
 </div>
