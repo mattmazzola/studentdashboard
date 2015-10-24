@@ -5,7 +5,9 @@
       <i class="ms-Icon--caretRight ms-Icon--animate {{unless isCollapsed 'ms-Icon--rotate45'}}" />
     </div>
     <div class="sa-search-category__preview-container">
-      {{component category.items.firstObject.categoryPreviewComponentName model=category.items.firstObject}}
+      {{#sd-cycle height=40 items=category.items as |item|}}
+        {{component item.categoryPreviewComponentName model=item}}
+      {{/sd-cycle}}
     </div>
   </div>
 </div>

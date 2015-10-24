@@ -1,19 +1,4 @@
-$purple-dark: #71356e;
-$purple-normal: #7f367b;
-$purple-light: #8c3289;
-$purple-icon: #965b93;
-$purple-highlight: #ede5ec;
-
-$color-purple-a3: #a3569e;
-$color-purple-80: #80397b;
-$color-grey-4: #444;
-$color-grey-73: #737373;
-$color-grey-e6: #e6e6e6;
-$color-offwhite-font: #e1e1e1;
-$color-offwhite: #f9f9f9;
-$color-offwhite-f3: #f3f3f3;
-$color-offwhite-d2: #d2d2d2;
-$color-gey-e5: #e5e5e5;
+@import "variables";
 
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -742,4 +727,18 @@ rect.zoomtarget {
 }
 .sd-timeline-controls-command-menu__item--border-bottom {
 	border-bottom: 1px solid $color-gey-e5;
+}
+
+.sd-cycle {
+	overflow: hidden;
+  position: relative;
+}
+.sd-cycle__items--transition {
+  transition: top 0.5s ease-out;
+}
+.sd-cycle__items {
+  position: absolute;
+  width: 100%;
+}
+.sd-cycle__item {
 }

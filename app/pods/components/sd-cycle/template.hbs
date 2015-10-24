@@ -1,0 +1,9 @@
+<div class="sd-cycle" style={{inlineStyleHeight}}>
+	<div class="sd-cycle__items {{if transition 'sd-cycle__items--transition'}}" style={{inlineStyleTop}}>
+    {{#each circularItems as |item| }}
+      <div class="sd-cycle__item" style={{inlineStyleHeight}}>
+        {{yield item}}
+      </div>
+    {{/each}}
+	</div>
+</div>
