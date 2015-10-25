@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('index', { path: '/' }, function () {
     this.route('item', { path: '/:item_id' });
   });
+  this.route('create');
   this.route('timeline', function() {
     this.route('event', { path: '/:event_id' });
   });

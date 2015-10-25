@@ -14,7 +14,7 @@
           <i class="ms-Icon--menu2"></i>
         </div>
         <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          StudentDashboard
+          &nbsp;
         </div>
       </button>
       {{#link-to "index" tagName="button" class="sa-nav-button"}}
@@ -22,7 +22,15 @@
           <i class="ms-Icon--dashboard2"></i>
         </div>
         <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Home
+          Dashboard
+        </div>
+      {{/link-to}}
+			{{#link-to "create" tagName="button" class="sa-nav-button"}}
+        <div class="sa-nav-button__icon">
+          <i class="ms-Icon--plus2"></i>
+        </div>
+        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+          Create
         </div>
       {{/link-to}}
       {{#link-to "timeline" tagName="button" class="sa-nav-button"}}
