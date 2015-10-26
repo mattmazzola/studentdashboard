@@ -1,0 +1,38 @@
+<div class="sd-assignment">
+  <div class="sd-assignment__title">
+    {{paper-input label="Title" value=title}}
+  </div>
+  <div class="sd-assignment__description">
+    {{paper-input label="Description" value=description}}
+  </div>
+  <div class="sd-assignment__visibledate">
+    {{paper-input label="Viewable On" type="date" value=visibleDate}}
+  </div>
+  <div class="sd-assignment__visibledate">
+    {{paper-input label="Due On" type="date" value=dueDate}}
+  </div>
+  <div class="sd-assignment__activities">
+    <h2>Actvities ({{activities.length}}) {{#paper-button raised=true primary=true action="addActivityClicked"}}Add{{/paper-button}}</h2>
+    {{#if activities.length}}
+      {{#paper-content class="md-whiteframe-z1 list-demo"}}
+        {{#paper-list}}
+          {{#each activities as |activity|}}
+            {{#paper-item class="md-3-line"}}
+              <img src={{activity.previewImageUrl}} alt={{activity.title}} class="md-avatar">
+              <div class="md-list-item-text">
+                <h3>{{activity.title}}</h3>
+                <h4>{{activity.description}}</h4>
+                <p>{{activity.description}}</p>
+              </div>
+            {{/paper-item}}
+          {{/each}}
+        {{/paper-list}}
+      {{/paper-content}}
+    {{else}}
+      <h2>No activities</h2>
+    {{/if}}
+  </div>
+  <div class="sd-assignment__actions">
+    {{#paper-button raised=true primary=true action="saveClicked"}}Save{{/paper-button}}
+  </div>
+</div>

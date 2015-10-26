@@ -1,0 +1,14 @@
+@import "variables";
+
+.sd-create {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.sd-create__controls {
+  background-color: $purple-normal;
+  min-height: 40px;
+}
+.sd-create__content {
+  flex: 1;
+}
