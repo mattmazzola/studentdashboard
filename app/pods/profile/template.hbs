@@ -1,1 +1,7 @@
 <h1>Profile</h1>
+
+{{#if session.isAuthenticated}}
+    <button type="button" {{action 'invalidateSession'}}>Logout</button>
+  {{else}}
+    <button type="button" {{action 'loginWithFacebook'}}>Login</button>
+  {{/if}}

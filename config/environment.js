@@ -22,6 +22,21 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline'",
     },
+
+    'ember-simple-auth': {
+      authenticationRoute: 'profile',
+      crossOriginWhitelist: ['*'],
+      store: 'simple-auth-session-store:local-storage'
+    },
+
+    'torii': {
+      providers: {
+        'facebook-oauth2': {
+          apiKey: '546311298860891',
+          redirectUri: 'http://localhost:4200'
+        }
+      }
+    }
   };
 
   if (environment === 'development') {

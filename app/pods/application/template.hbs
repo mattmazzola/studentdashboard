@@ -4,6 +4,11 @@
 	{{/link-to}}
 	<div class="sa-title__text">
 		StudentDashboard
+		{{#if session.isAuthenticated}}
+	    Logout
+	  {{else}}
+	    Login
+	  {{/if}}
 	</div>
 </div>
 <div class="sa-layout__content">

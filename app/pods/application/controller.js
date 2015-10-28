@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+const {
+  inject
+} = Ember;
 
+export default Ember.Controller.extend({
+  session: inject.service('session'),
+  
   isCollapsed: true,
 
   actions: {
