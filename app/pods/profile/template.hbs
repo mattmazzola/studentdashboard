@@ -3,5 +3,5 @@
 {{#if session.isAuthenticated}}
     <button type="button" {{action 'invalidateSession'}}>Logout</button>
   {{else}}
-    <button type="button" {{action 'loginWithFacebook'}}>Login</button>
+    <button type="button" {{action 'authenticateWithFacebook'}}>Login</button>
   {{/if}}

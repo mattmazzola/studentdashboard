@@ -24,16 +24,13 @@ module.exports = function(environment) {
     },
 
     'ember-simple-auth': {
-      authenticationRoute: 'profile',
-      crossOriginWhitelist: ['*'],
-      store: 'simple-auth-session-store:local-storage'
+      authenticationRoute: 'profile'
     },
 
     'torii': {
       providers: {
         'facebook-oauth2': {
-          apiKey: '546311298860891',
-          redirectUri: 'http://localhost:4200'
+          apiKey: '546311298860891'
         }
       }
     }
