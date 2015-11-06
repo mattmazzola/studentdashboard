@@ -29,8 +29,8 @@ module.exports = function(environment) {
 
     'torii': {
       providers: {
-        'facebook-oauth2': {
-          apiKey: '546311298860891'
+        'facebook-oauth2implicit': {
+          apiKey: '631252926924840'
         }
       }
     }

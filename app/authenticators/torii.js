@@ -1,6 +1,15 @@
 import Ember from 'ember';
-import ToriiAuthenticator from 'ember-simple-auth/authenticators/torii';
+import Torii from 'ember-simple-auth/authenticators/torii';
 
-export default ToriiAuthenticator.extend({
-  torii: Ember.inject.service()
+export default Torii.extend({
+  torii: Ember.inject.service(),
+
+  restore(authData) {
+    return new Ember.RSVP.Promise((resolve, reject) => {
+      // Check that accessToken is not expired.
+      if(authData.accessToken) {
+          resolve(authData);
+      }
+    });
+  }
 });

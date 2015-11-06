@@ -35,6 +35,8 @@ export default function() {
   this.get('/items');
   this.get('/items/:id');
 
+  this.pretender.get('https://graph.facebook.com/me', this.pretender.passthrough);
+
   /*
     POST shorthands
 
