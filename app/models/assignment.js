@@ -6,8 +6,5 @@ const {
 } = DS;
 
 export default item.extend({
-  class: attr('string'),
-  pointsEarned: attr('number'),
-  pointsTotal: attr('number'),
-  description: attr('string')
+
 });

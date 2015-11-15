@@ -2,8 +2,8 @@ import Mirage, {faker} from 'ember-cli-mirage';
 import moment from 'moment';
 
 export default Mirage.Factory.extend({
-  id: i => i + 1,
-  activities: i => [i*3 + 1, i*3 + 2, i*3 + 3],
+  id: i => i + 2,
+  activities: i => [1, 2, 3].map(x => x + i*10),
   title: i => `Item Title ${i}`,
   category_id: i => i + 1,
   description: i => `Item Description ${i}`,
