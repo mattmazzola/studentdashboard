@@ -1,0 +1,13 @@
+<div class="sd-page">
+  <div class="sd-page__controls">
+    &nbsp;
+  </div>
+  <div class="sd-page__body">
+    <h1>Profile</h1>
+    <p><b>Id:</b> {{sessionAccount.user.id}}</p>
+    <p><b>Name:</b> {{sessionAccount.user.name}}</p>
+    <p><b>Email:</b> {{sessionAccount.user.email}}</p>
+    <p><b>Type:</b> {{sessionAccount.user.provider}}</p>
+    <button type="button" {{action 'invalidateSession'}}>Logout</button>
+  </div>
+</div>

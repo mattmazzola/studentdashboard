@@ -7,15 +7,18 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('index', { path: '/' }, function () {
-    this.route('item', { path: '/:item_id' });
+    this.route('index', { path: '/dashboard' }, function () {
+      this.route('item', { path: '/:item_id' });
+    });
+    this.route('timeline', function() {
+      this.route('event', { path: '/:event_id' });
+    });
+    this.route('create');
+    this.route('profile');
+    this.route('feedback');
+    this.route('settings');
   });
-  this.route('create');
-  this.route('timeline', function() {
-    this.route('event', { path: '/:event_id' });
-  });
-  this.route('profile');
-  this.route('feedback');
-  this.route('settings');
+  this.route('login');
 });
 
 export default Router;

@@ -1,6 +1,8 @@
 @import "variables";
 @import "sd-assignment";
 @import "sd-create";
+@import "sd-login";
+@import "sd-page";
 @import 'ember-paper';
 
 /* Ember-paper Overrides */
@@ -64,14 +66,14 @@ body > .ember-view,
 }
 
 .sa-layout__title {
-	background-color: $purple-dark;
-	color: $color-offwhite-font;
+	background-color: $color-purple-71;
+	color: $color-offwhite-e1;
 	display: flex;
 }
 .sa-back-button {
 	background: none;
 	border: 0;
-	color: $color-offwhite-font;
+	color: $color-offwhite-e1;
 	width: 43px;
 	cursor: pointer;
 	outline: 0;
@@ -90,9 +92,9 @@ body > .ember-view,
 	flex: 1;
 }
 .sa-layout__nav {
-	background-color: $color-offwhite;
+	background-color: $color-offwhite-f9;
 	display: flex;
-	color: $purple-icon;
+	color: $color-purple-96;
 	flex-direction: column;
 }
 .sa-layout__pages {
@@ -117,14 +119,14 @@ body > .ember-view,
 	cursor: pointer;
 	padding: 15px 10px;
 	font-size: 18px;
-	color: $purple-icon;
+	color: $color-purple-96;
 
 	&:hover:not(.sa-nav-button--expand) {
-		background-color: $purple-highlight;
+		background-color: $color-purple-ed;
 	}
 
 	&.active {
-		background-color: $purple-highlight;
+		background-color: $color-purple-ed;
 	}
 }
 .sa-nav-button--collapsed {
@@ -144,8 +146,8 @@ body > .ember-view,
 }
 
 .sa-nav-button--expand {
-	background-color: $purple-normal;
-	color: $color-offwhite-font;
+	background-color: $color-purple-7f;
+	color: $color-offwhite-e1;
 	font-weight: bold;
 	text-transform: uppercase;
 
@@ -172,8 +174,8 @@ body > .ember-view,
 }
 .sa-search__header {
 	display: flex;
-	background-color: $purple-light;
-	color: $color-offwhite-font;
+	background-color: $color-purple-8c;
+	color: $color-offwhite-e1;
 
 	[class^="ms-Icon--"]:before, [class*=" ms-Icon--"]:before {
 		line-height: 40px;
@@ -184,7 +186,7 @@ body > .ember-view,
 	flex: 1;
 	border: 0;
 	background: 0;
-	color: $color-offwhite-font;
+	color: $color-offwhite-e1;
 	line-height: 40px;
 	padding: 0 20px;
 
@@ -193,19 +195,19 @@ body > .ember-view,
 		outline: transparent;
 	}
 	&::-webkit-input-placeholder {
-	   color: $color-offwhite-font;
+	   color: $color-offwhite-e1;
 	}
 
 	&:-moz-placeholder { /* Firefox 18- */
-	   color: $color-offwhite-font;;
+	   color: $color-offwhite-e1;;
 	}
 
 	&::-moz-placeholder {  /* Firefox 19+ */
-	   color: $color-offwhite-font;;
+	   color: $color-offwhite-e1;;
 	}
 
 	&:-ms-input-placeholder {
-	   color: $color-offwhite-font;;
+	   color: $color-offwhite-e1;;
 	}
 }
 .sa-search-header__icon {
@@ -243,7 +245,7 @@ body > .ember-view,
 	padding: 10px 20px 13px 20px;
 
 	&:hover {
-		background-color: $purple-highlight;
+		background-color: $color-purple-ed;
 	}
 }
 .sa-search-category__items--collapsed {
@@ -298,7 +300,7 @@ body > .ember-view,
 	background-color: #fafafa;
 
 	&:hover:not(.sa-search-item--selected) {
-		background-color: $purple-highlight;
+		background-color: $color-purple-ed;
 	}
 }
 .sa-search-item__title {
@@ -333,19 +335,19 @@ body > .ember-view,
 }
 .sa-search-item.active,
 .sa-search-item--selected {
-	background-color: $purple-normal;
-	color: $color-offwhite-font;
+	background-color: $color-purple-7f;
+	color: $color-offwhite-e1;
 
 	&:hover {
-		background-color: lighten($purple-normal, 10);
+		background-color: lighten($color-purple-7f, 10);
 	}
 
 	.sa-search-category__title {
-		color: $color-offwhite;
+		color: $color-offwhite-f9;
 	}
 
 	.sa-search-category__metadata {
-		color: $color-offwhite-font;
+		color: $color-offwhite-e1;
 	}
 }
 
@@ -375,7 +377,7 @@ body > .ember-view,
 
 /* Item */
 .sa-item {
-	background-color: $color-offwhite;
+	background-color: $color-offwhite-f9;
 	display: flex;
   flex-direction: column;
 	flex: 1
@@ -384,8 +386,8 @@ body > .ember-view,
 	flex: 2;
 }
 .sa-item__header {
-	background-color: $purple-normal;
-	color: $color-offwhite-font;
+	background-color: $color-purple-7f;
+	color: $color-offwhite-e1;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -396,17 +398,24 @@ body > .ember-view,
 }
 
 .sa-item-placeholder {
+  display: flex;
 	flex: 1;
-	display: flex;
-	justify-content: center;
-  align-items: center;
+  flex-direction: column;
+}
+.sa-item-placeholder__controls {
+  height: 40px;
+  background-color: $color-purple-7f;
 }
 .sa-item-placeholder__text {
+	display: flex;
+  flex: 1;
+	justify-content: center;
+  align-items: center;
 }
 
 /* Item Command */
 .sa-item-command {
-	color: $color-offwhite-font;
+	color: $color-offwhite-e1;
 	margin: 0;
 	padding: 0 15px;
 	background: 0;
@@ -433,13 +442,13 @@ body > .ember-view,
 
 /* Tag */
 .sa-tag {
-	background-color: $purple-light;
+	background-color: $color-purple-8c;
 	padding: 0.25em 0.75em;
-	color: $color-offwhite-font;
+	color: $color-offwhite-e1;
 	font-size: 12px;
 
 	&:hover {
-		background-color: lighten($purple-light, 10);
+		background-color: lighten($color-purple-8c, 10);
 	}
 }
 
@@ -458,7 +467,7 @@ body > .ember-view,
 .sa-assignment__metadatas {
 	margin: 0 0 0.5em 0;
 	font-size: 14px;
-	color: $color-grey-4;
+	color: $color-grey-44;
 }
 .sa-assignment__metadata {
 	margin-right: 10px;
@@ -501,8 +510,8 @@ body > .ember-view,
 /* Activity */
 .sa-activity {
 	padding: 0 1em;
-	background-color: $color-offwhite;
-	border-left: 3px solid $purple-normal;
+	background-color: $color-offwhite-f9;
+	border-left: 3px solid $color-purple-7f;
 	margin-bottom: 1em;
 
 	display: flex;
@@ -532,7 +541,7 @@ body > .ember-view,
 /* Material */
 .sa-material {
 	display: flex;
-	background-color: darken($color-offwhite, 10);
+	background-color: darken($color-offwhite-f3, 10);
 	box-shadow: 2 black;
 }
 .sa-material__icon {
@@ -589,7 +598,7 @@ rect.zoomtarget {
 }
 .axis--x-ticks path,
 .axis--x-ticks line {
-  stroke: $purple-dark;
+  stroke: $color-purple-71;
 	stroke-width: 2px;
   shape-rendering: crispEdges;
 }
@@ -613,7 +622,7 @@ rect.zoomtarget {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 18px;
 	font-weight: lighter;
-	stroke: $purple-dark;
+	stroke: $color-purple-71;
 }
 
 
@@ -640,8 +649,8 @@ rect.zoomtarget {
 }
 
 .sa-timeline__controls {
-	background-color: $purple-dark;
-	color: $color-offwhite-font;
+	background-color: $color-purple-7f;
+	color: $color-offwhite-e1;
 }
 .sd-timeline-controls {
 
@@ -708,8 +717,8 @@ rect.zoomtarget {
 	top: 1px;
 	left: 10px;
 	background: white;
-	border: 1px solid $color-gey-e5;
-	color: $color-grey-4;
+	border: 1px solid $color-grey-e5;
+	color: $color-grey-44;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -731,11 +740,11 @@ rect.zoomtarget {
 	transition: background-color 0.2s ease-out;
 
 	&:hover {
-		background-color: $color-gey-e5;
+		background-color: $color-grey-e5;
 	}
 }
 .sd-timeline-controls-command-menu__item--border-bottom {
-	border-bottom: 1px solid $color-gey-e5;
+	border-bottom: 1px solid $color-grey-e5;
 }
 
 .sd-cycle {

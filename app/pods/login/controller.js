@@ -8,8 +8,8 @@ export default Ember.Controller.extend({
   session: inject.service(),
 
   actions: {
-    invalidateSession() {
-      this.get('session').invalidate();
+    authenticateWithFacebook() {
+      this.get('session').authenticate('authenticator:torii', 'facebook');
     }
   }
 });

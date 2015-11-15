@@ -1,0 +1,12 @@
+@import "variables";
+
+.sd-login {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sd-login__form button {
+  padding: 1em;
+  font-size: 24px;
+}

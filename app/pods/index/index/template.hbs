@@ -1,5 +1,25 @@
-<article class="sa-item-placeholder">
-	<h1 class="sa-item-placeholder__text">
-		Select An Item
-	</h1>
-</article>
+<div class="sa-search">
+	<div class="sa-search__header">
+		<input class="sa-search-header__input" type="text" placeholder="Search" />
+		<div class="sa-search-header__icon sa-search-header__icon--search">
+			<i class="ms-Icon--search"></i>
+		</div>
+		<div class="sa-search-header__icon sa-search-header__icon--refresh">
+			<i class="ms-Icon--refresh"></i>
+		</div>
+		<div class="sa-search-header__icon sa-search-header__icon--check">
+			<i class="ms-Icon--placeholder"></i>
+		</div>
+	</div>
+	<div class="sa-search__commands">
+		Expand All <i class="ms-Icon--chevronDown"></i>
+	</div>
+	<div class="sa-search__categories">
+		<div class="sa-search-categories">
+	    {{#each model as |category|}}
+	      {{sa-search-category category=category}}
+	    {{/each}}
+		</div>
+	</div>
+</div>
+{{outlet}}

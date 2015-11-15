@@ -4,77 +4,8 @@
 	{{/link-to}}
 	<div class="sa-title__text">
 		StudentDashboard
-		{{#if session.isAuthenticated}}
-	    Logout
-	  {{else}}
-	    Login
-	  {{/if}}
 	</div>
 </div>
 <div class="sa-layout__content">
-  <div class="sa-layout__nav">
-    <div class="sa-nav__primary">
-      <button type="button" class="sa-nav-button sa-nav-button--expand" {{action "toggleExpand"}}>
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--menu2"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          &nbsp;
-        </div>
-      </button>
-      {{#link-to "index" tagName="button" class="sa-nav-button"}}
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--dashboard2"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Dashboard
-        </div>
-      {{/link-to}}
-			{{#link-to "create" tagName="button" class="sa-nav-button"}}
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--plus2"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Create
-        </div>
-      {{/link-to}}
-      {{#link-to "timeline" tagName="button" class="sa-nav-button"}}
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--placeholder"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Timeline
-        </div>
-      {{/link-to}}
-    </div>
-    <div class="sa-nav__secondary">
-      {{#link-to "profile" tagName="button" class="sa-nav-button"}}
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--circleFill"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Profile
-        </div>
-      {{/link-to}}
-      {{#link-to "feedback" tagName="button" class="sa-nav-button"}}
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--dashboard2"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Feedback
-        </div>
-      {{/link-to}}
-      {{#link-to "settings" tagName="button" class="sa-nav-button"}}
-        <div class="sa-nav-button__icon">
-          <i class="ms-Icon--gear"></i>
-        </div>
-        <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
-          Settings
-        </div>
-      {{/link-to}}
-    </div>
-  </div>
-  <div class="sa-layout__pages">
-    {{outlet}}
-  </div>
+  {{outlet}}
 </div>

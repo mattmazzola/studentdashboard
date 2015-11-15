@@ -1,14 +1,14 @@
 @import "variables";
 
-.sd-create {
-  flex: 1;
+.sd-page {
   display: flex;
   flex-direction: column;
-}
-.sd-create__controls {
-  background-color: $color-purple-7f;
-  min-height: 40px;
-}
-.sd-create__content {
   flex: 1;
+}
+.sd-page__controls {
+  height: 40px;
+  background-color: $color-purple-7f;
+}
+.sd-page__body {
+  padding: 0 2em;
 }

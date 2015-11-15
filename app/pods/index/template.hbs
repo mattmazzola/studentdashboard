@@ -1,25 +1,65 @@
-<div class="sa-search">
-	<div class="sa-search__header">
-		<input class="sa-search-header__input" type="text" placeholder="Search" />
-		<div class="sa-search-header__icon sa-search-header__icon--search">
-			<i class="ms-Icon--search"></i>
-		</div>
-		<div class="sa-search-header__icon sa-search-header__icon--refresh">
-			<i class="ms-Icon--refresh"></i>
-		</div>
-		<div class="sa-search-header__icon sa-search-header__icon--check">
-			<i class="ms-Icon--placeholder"></i>
-		</div>
-	</div>
-	<div class="sa-search__commands">
-		Expand All <i class="ms-Icon--chevronDown"></i>
-	</div>
-	<div class="sa-search__categories">
-		<div class="sa-search-categories">
-	    {{#each model as |category|}}
-	      {{sa-search-category category=category}}
-	    {{/each}}
-		</div>
-	</div>
+<div class="sa-layout__nav">
+  <div class="sa-nav__primary">
+    <button type="button" class="sa-nav-button sa-nav-button--expand" {{action "toggleExpand"}}>
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--menu2"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        &nbsp;
+      </div>
+    </button>
+    {{#link-to "index.index" tagName="button" class="sa-nav-button"}}
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--dashboard2"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        Dashboard
+      </div>
+    {{/link-to}}
+    {{#link-to "index.create" tagName="button" class="sa-nav-button"}}
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--plus2"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        Create
+      </div>
+    {{/link-to}}
+    {{#link-to "index.timeline" tagName="button" class="sa-nav-button"}}
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--placeholder"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        Timeline
+      </div>
+    {{/link-to}}
+  </div>
+  <div class="sa-nav__secondary">
+    {{#link-to "index.profile" tagName="button" class="sa-nav-button"}}
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--circleFill"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        Profile
+      </div>
+    {{/link-to}}
+    {{#link-to "index.feedback" tagName="button" class="sa-nav-button"}}
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--dashboard2"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        Feedback
+      </div>
+    {{/link-to}}
+    {{#link-to "index.settings" tagName="button" class="sa-nav-button"}}
+      <div class="sa-nav-button__icon">
+        <i class="ms-Icon--gear"></i>
+      </div>
+      <div class="sa-nav-button__text {{if isCollapsed 'sa-nav-button--collapsed'}}">
+        Settings
+      </div>
+    {{/link-to}}
+  </div>
 </div>
-{{outlet}}
+<div class="sa-layout__pages">
+  {{outlet}}
+</div>
